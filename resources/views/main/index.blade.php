@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@extends('layouts.app')
+    <!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -10,16 +11,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Roboto&display=swap"
           rel="stylesheet">
-    <link rel="icon" href="img/icon.png">
-    <script src="index.js" defer></script>
+    <link rel="icon" href="{{asset('images/icon.png')}}">
+    <script src="{{asset('js/index.js')}}" defer></script>
 
     <title>MusiVerse</title>
 </head>
 
 <body>
-<header>
+@section('header')
     <div class="container">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="">
             <img src="{{asset('images/logo.svg')}}" alt="Musi Verse">
             <div class="logo-text">Musi Verse</div>
             <nav id="menu">
@@ -51,30 +52,30 @@
                     Попробовать сейчас
                 </div>
             </div>
-            <img src="img/img1.png" alt="playlists image">
+            <img src="{{asset('images/img1.png')}}" alt="playlists image">
         </div>
     </div>
-</header>
-<main class="main" id="main">
+@endsection
+@section('main')
     <div class="advantages" id="advantages">
         <div class="container">
             <h1>Наши преимущества</h1>
             <div class="photos">
                 <div class="photo">
-                    <img src="img/gallery_img1.png" alt="playlists">
+                    <img src="{{asset('images/gallery_img1.png')}}" alt="playlists">
                     <div class="photo-description">
                         Добавляйте свои плейлисты
                         и знакомьтесь с новыми
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="img/gallery_img2.png" alt="Anywhere and Anytime">
+                    <img src="{{asset('images/gallery_img2.png')}}" alt="Anywhere and Anytime">
                     <div class="photo-description">
                         Слушайте любимую музыку на любой платформе
                     </div>
                 </div>
                 <div class="photo">
-                    <img src="img/gallery_img3.png" alt="No ads" style="scale: 1.5;">
+                    <img src="{{asset('images/gallery_img3.png')}}" alt="No ads" style="scale: 1.5;">
                     <div class="photo-description">
                         Никогда не отвлекайтесь от прослушивания Никакой рекламы
                     </div>
@@ -92,9 +93,8 @@
             </div>
         </div>
     </div>
-
-</main>
-<footer>
+@endsection
+@section('footer')
     <div class="contacts" id="contacts">
         <div class="container">
             <h1>Остались вопросы?</h1>
@@ -111,7 +111,8 @@
             </div>
         </div>
     </div>
-</footer>
+
+@endsection
 </body>
 
 </html>

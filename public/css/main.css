@@ -24,7 +24,6 @@ ul, li {
     display: block;
 }
 
-
 header {
     /* background: var(--main-dark-color); */
     background: linear-gradient(10deg, var(--main-dark-color), var(--main-black-color) 70%) no-repeat center top / cover;
@@ -54,7 +53,11 @@ header a{
     transition: all 0.8s ease;
 }
 
-
+.nav {
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+}
 
 .offer {
     margin-top: 133px;
