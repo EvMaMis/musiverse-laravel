@@ -1,8 +1,5 @@
-@extends('layouts.app')
-    <!DOCTYPE html>
-<html lang="ru">
-
-<head>
+@extends('layouts.main')
+    @section('head_meta')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -13,13 +10,10 @@
           rel="stylesheet">
     <link rel="icon" href="{{asset('images/icon.png')}}">
     <script src="{{asset('js/index.js')}}" defer></script>
-
     <title>MusiVerse</title>
-</head>
+    @endsection
 
-<body>
-@section('header')
-    <div class="container">
+@section('navbar')
         <div class="">
             <img src="{{asset('images/logo.svg')}}" alt="Musi Verse">
             <div class="logo-text">Musi Verse</div>
@@ -40,6 +34,10 @@
                 </ul>
             </nav>
         </div>
+        @endsection
+
+@section('header')
+    <div class="container">
         <div class="row">
             <div class="offer">
                 <h1>Откройте для себя новый <br>мир музыки</h1>
@@ -56,6 +54,8 @@
         </div>
     </div>
 @endsection
+
+
 @section('main')
     <div class="advantages" id="advantages">
         <div class="container">

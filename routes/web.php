@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 Route::group(['prefix' => 'admin/'], function() {
-    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
     Route::group(['prefix' => 'genres'], function() {
         Route::get('/', [GenreController::class, 'index'])->name('admin.genre.index');
         Route::get('/create', [GenreController::class, 'create'])->name('admin.genre.create');

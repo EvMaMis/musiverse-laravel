@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    @yield('head_meta')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -18,7 +19,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="height: 5vh;">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -32,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-
+                    @yield('navbar')
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -74,12 +75,9 @@
             </div>
         </div>
     </nav>
-    <main class="py-4">
-        @yield('main')
-    </main>
-    <footer>
-        @yield('footer')
-    </footer>
+    <div>
+        @yield('content')
+    </div>
 </div>
 </body>
 </html>
