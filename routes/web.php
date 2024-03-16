@@ -12,6 +12,7 @@ Route::group(['prefix' => 'admin/'], function() {
         Route::get('/', [GenreController::class, 'index'])->name('admin.genre.index');
         Route::get('/create', [GenreController::class, 'create'])->name('admin.genre.create');
         Route::post('/', [GenreController::class, 'store'])->name('admin.genre.store');
+        Route::delete('/{genre}', [GenreController::class, 'destroy'])->name('admin.genre.destroy');
     });
 });
 
