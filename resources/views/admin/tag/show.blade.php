@@ -4,11 +4,11 @@
     <table class="table">
         <tr>
             <th scope="col">ID</th>
-            <td>{{$genre->id}}</td>
+            <td>{{$tag->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Название жанра</th>
-            <td>{{$genre->title}}</td>
+            <th scope="row">Название тега</th>
+            <td>{{$tag->title}}</td>
         </tr>
     </table>
 @endsection
