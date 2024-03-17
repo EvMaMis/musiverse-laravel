@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Genre\StoreRequest;
+use App\Http\Requests\Admin\Genre\UpdateRequest;
 use App\Models\Genre;
-use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
     public function index() {
-        $items = Genre::all();
-        return view('admin.genre.index', compact('items'));
+        $genres = Genre::all();
+        return view('admin.genre.index', compact('genres'));
     }
 
     public function create() {
@@ -24,9 +24,23 @@ class GenreController extends Controller
         return redirect()->route('admin.genre.index');
     }
 
-    public function destroy($item) {
-        dd($item);
-        $item->delete();
+    public function show(Genre $genre) {
+        return view('admin.genre.show', compact('genre'));
+    }
+
+    public function edit(Genre $genre) {
+        return view('admin.genre.edit', compact('genre'));
+    }
+
+    public function update(UpdateRequest $request, Genre $genre) {
+        $data = $request->validated();
+        $genre->update($data);
+        return redirect()->route('admin.genre.index');
+    }
+
+
+    public function destroy(Genre $genre) {
+        $genre->delete();
         return redirect()->route('admin.genre.index');
     }
 }
