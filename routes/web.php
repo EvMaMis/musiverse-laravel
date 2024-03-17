@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
@@ -29,6 +30,16 @@ Route::group(['prefix' => 'admin/'], function() {
         Route::get('/{tag}/edit', [TagController::class, 'edit'])->name('admin.tag.edit');
         Route::patch('/{tag}', [TagController::class, 'update'])->name('admin.tag.update');
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tag.destroy');
+    });
+
+    Route::group(['prefix' => 'artists'], function() {
+        Route::get('/', [ArtistController::class, 'index'])->name('admin.artist.index');
+        Route::get('/create', [ArtistController::class, 'create'])->name('admin.artist.create');
+        Route::post('/', [ArtistController::class, 'store'])->name('admin.artist.store');
+        Route::get('/{artist}', [ArtistController::class, 'show'])->name('admin.artist.show');
+        Route::get('/{artist}/edit', [ArtistController::class, 'edit'])->name('admin.artist.edit');
+        Route::patch('/{artist}', [ArtistController::class, 'update'])->name('admin.artist.update');
+        Route::delete('/{artist}', [ArtistController::class, 'destroy'])->name('admin.artist.destroy');
     });
 
     Route::group(['prefix' => 'songs'], function() {

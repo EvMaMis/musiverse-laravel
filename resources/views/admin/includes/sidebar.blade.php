@@ -23,6 +23,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{route('admin.artist.index')}}"
+               class="nav-link {{str_contains(url()->current(), 'artists') ? 'active' : ''}}" aria-current="page">
+                <i class="fas fa-solid fa-user"></i>
+                Исполнители
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{route('admin.song.index')}}"
                class="nav-link {{str_contains(url()->current(), 'songs') ? 'active' : ''}}" aria-current="page">
                 <i class="fas fa-solid fa-music"></i>
