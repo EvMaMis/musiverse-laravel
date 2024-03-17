@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Artist;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,14 +23,18 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|required'
+            'name' => ['string', 'required', Rule::unique('artists', 'name')->ignore($this->id)],
+            'description' => 'string|required',
         ];
     }
 
     public function messages() : array {
         return [
-            'title.string' => 'Заполните поле названия',
-            'title.required' => 'Заполните поле названия',
+            'name.string' => 'Заполните поле названия',
+            'name.required' => 'Заполните поле названия',
+            'name.unique' => 'Такой исполнитель уже существует',
+            'description.string' => 'Заполните поле описания',
+            'description.required' => 'Заполните поле описания'
         ];
     }
 }

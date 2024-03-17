@@ -1,3 +1,7 @@
+@section('head_meta')
+    <script src="https://kit.fontawesome.com/40087f1b88.js" crossorigin="anonymous"></script>
+@endsection
+
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100%">
     <a href="{{route('admin.main.index')}}"
        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">

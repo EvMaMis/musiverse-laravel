@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@section('head_meta')
-    <script src="https://kit.fontawesome.com/40087f1b88.js" crossorigin="anonymous"></script>
-@endsection
 
 @section('content')
     <div class="row vw-100">

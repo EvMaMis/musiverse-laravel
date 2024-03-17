@@ -7,13 +7,14 @@
 @endsection
 
 @section('main')
-    <form action="{{route('admin.artist.store')}}" method="POST">
+    <form action="{{route('admin.artist.update', $artist)}}" method="POST">
         @csrf
+        @method('PATCH')
         <div class="row">
             <div class="col-4">
                 <label for="name" class="form-check-label mb-2">Введите исполнителя</label>
                 <input id="name" type="text" placeholder="Имя исполнителя" class="form-control mb-3" name="name"
-                       value="{{old('name')}}">
+                       value="{{$artist->name}}">
                 @error('name')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
@@ -21,14 +22,15 @@
             <div class="col-10">
                 <label for="summernote" class="form-check-label mb-2">Описание исполнителя</label>
                 <textarea class="summernote" id="summernote" type="text" placeholder="Имя исполнителя"
-                          name="description">{{old('description')}}</textarea>
+                          name="description">{{$artist->description}}</textarea>
                 @error('description')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
+            <input type="hidden" name="id" value="{{$artist->id}}">
 
         </div>
-        <input type="submit" class="btn btn-success" value="Добавить исполнителя">
+        <input type="submit" class="btn btn-success" value="Обновить исполнителя">
     </form>
     <script type="text/javascript">
         $(document).ready(function () {
