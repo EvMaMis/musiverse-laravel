@@ -6,9 +6,13 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{{route('admin.genre.index')}}" class="nav-link active" aria-current="page">
+            <a href="{{route('admin.genre.index')}}" class="nav-link {{str_contains(url()->current(), 'genres') ? 'active' : ''}}" aria-current="page">
                 <i class="fas fa-solid fa-guitar"></i>
                 Жанры
+            </a>
+            <a href="{{route('admin.song.index')}}" class="nav-link {{str_contains(url()->current(), 'song') ? 'active' : ''}}" aria-current="page">
+                <i class="fas fa-solid fa-music"></i>
+                Композиции
             </a>
         </li>
     </ul>
