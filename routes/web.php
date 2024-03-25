@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin/'], function() {
 
     Route::group(['prefix' => 'songs'], function() {
         Route::get('/', [SongController::class, 'index'])->name('admin.song.index');
+        Route::get('/create', [SongController::class, 'create'])->name('admin.song.create');
+        Route::post('/', [SongController::class, 'store'])->name('admin.song.store');
     });
 });
 
