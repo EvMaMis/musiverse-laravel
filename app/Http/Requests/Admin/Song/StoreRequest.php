@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Artist;
+namespace App\Http\Requests\Admin\Song;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,8 +24,9 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'string|required',
             'artist_id' => 'integer|required',
-            'image' => 'string|required',
-            'file' => 'string|required',
+            'cover_path' => 'string|required',
+            'file_path' => 'string|required',
+            'genre_id' => 'integer|required'
         ];
     }
 

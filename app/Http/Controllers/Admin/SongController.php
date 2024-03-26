@@ -24,7 +24,10 @@ class SongController extends Controller
         return view('admin.song.create', compact('tags', 'genres', 'artists'));
     }
 
-    public function store() {
+    public function store(\App\Http\Requests\Admin\Song\StoreRequest $request) {
+        $data = $request->validated();
+        Song::firstOrCreate($data);
+        return redirect()->route('admin.song.index');
 
     }
 }
