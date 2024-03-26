@@ -24,15 +24,17 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'string|required',
             'artist_id' => 'integer|required',
+            'genre_id' => 'integer|required',
             'cover_path' => 'string|required',
             'file_path' => 'string|required',
-            'genre_id' => 'integer|required'
         ];
     }
 
     public function messages() : array {
         return [
             'required' => 'Поле :attribute должно быть заполнено',
+            'string' => 'Поле :attribute должно быть заполнено',
+            'integer' => 'Поле :attribute должно быть заполнено',
         ];
     }
 }

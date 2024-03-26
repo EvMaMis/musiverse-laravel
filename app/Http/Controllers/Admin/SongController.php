@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Genre\UpdateRequest;
-use App\Http\Requests\Admin\Tag\StoreRequest;
+use App\Http\Requests\Admin\Song\StoreRequest;
 use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Song;
@@ -18,15 +17,17 @@ class SongController extends Controller
     }
 
     public function create() {
-        $tags = Tag::all();
-        $genres = Genre::all();
-        $artists = Artist::all();
+        $tags = Tag::orderBy('title', 'ASC')->get();
+        $genres = Genre::orderBy('title', 'ASC')->get();
+        $artists = Artist::orderBy('name', 'ASC')->get();
         return view('admin.song.create', compact('tags', 'genres', 'artists'));
     }
 
-    public function store(\App\Http\Requests\Admin\Song\StoreRequest $request) {
+    public function store(StoreRequest $request) {
+        dd($request);
         $data = $request->validated();
-        Song::firstOrCreate($data);
+        $song = Song::firstOrCreate($data);
+        $song->tags()->attach();
         return redirect()->route('admin.song.index');
 
     }
