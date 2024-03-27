@@ -7,7 +7,7 @@
 
 @section('main')
     <div class="h1 mt-3">Добавить композицию</div>
-<form action="{{route('admin.song.store')}}" method="POST">
+<form action="{{route('admin.song.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group col-6 mt-3">
         <label for="title" class="form-label">Название песни</label>
@@ -40,11 +40,20 @@
     </div>
 
     <div class="mt-3 col-6">
-        <label for="formFile" class="form-label">Выберите музыкальный файл</label>
-        <input class="form-control" type="file" id="formFile">
+        <label for="formFile" class="form-label">Обложка</label>
+        <input class="form-control" type="file" id="formFile" name="cover">
+        @error('cover')
+        <div class="text-danger">{{$message}}</div>
+        @enderror
     </div>
 
-
+    <div class="mt-3 col-6">
+        <label for="formFile" class="form-label">Файл композиции</label>
+        <input class="form-control" type="file" id="formFile" name="file">
+        @error('file')
+        <div class="text-danger">{{$message}}</div>
+        @enderror
+    </div>
 
     <input type="submit" class="btn btn-success" value="Добавить">
 </form>
