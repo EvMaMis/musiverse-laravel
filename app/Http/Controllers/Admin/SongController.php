@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Song;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
@@ -24,11 +25,13 @@ class SongController extends Controller
     }
 
     public function store(StoreRequest $request) {
-        dd($request);
         $data = $request->validated();
+        $data['cover'] = Storage::disk('public')->put('/covers', $data['cover']);
+        $data['file'] = Storage::disk('public')->put('/music', $data['file']);
         $song = Song::firstOrCreate($data);
+
         $song->tags()->attach();
         return redirect()->route('admin.song.index');
 
-    }
+}
 }

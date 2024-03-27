@@ -21,12 +21,11 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        dd($this->file);
         return [
             'title' => 'string|required',
             'artist_id' => 'integer|required',
             'genre_id' => 'integer|required',
-            'cover' => 'required|mimes: png, jpg, jpeg',
+            'cover' => 'required|mimes:png,jpg,jpeg',
             'file' => 'required|mimes:mp3,wav,ogg',
         ];
     }

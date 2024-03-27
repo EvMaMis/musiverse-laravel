@@ -40,8 +40,8 @@
     </div>
 
     <div class="mt-3 col-6">
-        <label for="formFile" class="form-label">Обложка</label>
-        <input class="form-control" type="file" id="formFile" name="cover">
+        <label for="File" class="form-label">Обложка</label>
+        <input class="form-control" type="file" id="File" name="cover">
         @error('cover')
         <div class="text-danger">{{$message}}</div>
         @enderror
