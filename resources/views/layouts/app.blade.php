@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm" style="height: 5vh;">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" >
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 MusiVerse
@@ -77,7 +77,7 @@
             </div>
         </div>
     </nav>
-    <div>
+    <div class="container-fluid">
         @yield('content')
     </div>
 </div>
