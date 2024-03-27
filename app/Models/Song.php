@@ -19,4 +19,8 @@ class Song extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class, 'song_tag', 'song_id', 'tag_id');
     }
+
+    public function artist() {
+        return $this->hasOne(Artist::class, 'id', 'artist_id');
+    }
 }

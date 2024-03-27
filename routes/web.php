@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin/'], function() {
         Route::get('/', [SongController::class, 'index'])->name('admin.song.index');
         Route::get('/create', [SongController::class, 'create'])->name('admin.song.create');
         Route::post('/', [SongController::class, 'store'])->name('admin.song.store');
+        Route::get('/{song}', [SongController::class, 'show'])->name('admin.song.show');
+        Route::get('/{song}/edit', [SongController::class, 'edit'])->name('admin.song.edit');
+        Route::patch('/{song}', [SongController::class, 'update'])->name('admin.song.update');
+        Route::delete('/{song}', [SongController::class, 'destroy'])->name('admin.song.destroy');
     });
 });
 
