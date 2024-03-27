@@ -26,11 +26,16 @@ class SongController extends Controller
 
     public function store(StoreRequest $request) {
         $data = $request->validated();
-        $data['cover'] = Storage::disk('public')->put('/covers', $data['cover']);
+        $data['image'] = Storage::disk('public')->put('/covers', $data['cover']);
         $data['file'] = Storage::disk('public')->put('/music', $data['file']);
-        $song = Song::firstOrCreate($data);
+        if(isset($data['tags'])) {
+            $tags = $data['tags'];
+            unset($data['tags']);
+        }
+        $song = Song::create($data);
+        if(isset($tags))
+            $song->tags()->attach($tags);
 
-        $song->tags()->attach();
         return redirect()->route('admin.song.index');
 
 }

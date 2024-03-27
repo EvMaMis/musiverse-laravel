@@ -27,6 +27,7 @@ class StoreRequest extends FormRequest
             'genre_id' => 'integer|required',
             'cover' => 'required|mimes:png,jpg,jpeg',
             'file' => 'required|mimes:mp3,wav,ogg',
+            'tags' => 'array',
         ];
     }
 

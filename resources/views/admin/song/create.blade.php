@@ -39,6 +39,15 @@
         @enderror
     </div>
 
+    <div class="form-group col-6 mt-3">
+        <label for="tags" class="form-label">Теги композиции</label>
+        <select name="tags[]" id="tags" class="js-example-basic-multiple form-control" multiple="multiple">
+            @foreach($tags as $tag)
+                <option value="{{$tag->id}}">{{$tag->title}}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="mt-3 col-6">
         <label for="File" class="form-label">Обложка</label>
         <input class="form-control" type="file" id="File" name="cover">
@@ -63,6 +72,7 @@
 <script>
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
+        $('.js-example-basic-multiple').select2();
     });
 </script>
 @endsection
