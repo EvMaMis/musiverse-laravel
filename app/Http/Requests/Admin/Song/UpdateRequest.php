@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Artist;
+namespace App\Http\Requests\Admin\Song;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,18 +23,25 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'required', Rule::unique('artists', 'name')->ignore($this->id)],
-            'description' => 'string|required',
+            'title' => 'string|required',
+            'artist_id' => 'integer|required',
+            'genre_id' => 'integer|required|exists:genres,id',
+            'cover' => 'nullable|mimes:png,jpg,jpeg',
+            'file' => 'nullable|mimes:mp3,wav,ogg',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
         ];
     }
 
     public function messages() : array {
         return [
-            'name.string' => 'Заполните поле названия',
-            'name.required' => 'Заполните поле названия',
-            'name.unique' => 'Такой исполнитель уже существует',
-            'description.string' => 'Заполните поле описания',
-            'description.required' => 'Заполните поле описания'
+            'title' => 'Поле названия должно быть заполнено',
+            'artist_id' => 'Необходимо выбрать исполнителя',
+            'genre_id' => 'Необходимо выбрать жанр',
+            'cover.required' => 'Введите путь к обложке',
+            'cover.mimes' => 'Файл должен иметь одно из разрешений: png, jpg, jpeg',
+            'file.required' => 'Необходимо выбрать файл композиции',
+            'file.mimes' => 'Файл должен иметь одно из разрешений: mp3, wav, ogg',
         ];
     }
 }
