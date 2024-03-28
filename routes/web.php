@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
@@ -58,6 +59,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/create', [RoleController::class, 'create'])->name('admin.role.create');
         Route::post('/', [RoleController::class, 'store'])->name('admin.role.store');
+    });
+
+    Route::group(['prefix' => 'permissions'], function() {
+        Route::get('/', [PermissionController::class]);
     });
 
     Route::group(['prefix' => 'users'], function() {
