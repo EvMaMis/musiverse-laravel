@@ -9,10 +9,17 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Song;
 use App\Models\Tag;
+use App\Service\SongService;
 use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
 {
+    protected SongService $service;
+    public function __construct(SongService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $songs = Song::with('artist')->get();
@@ -30,16 +37,7 @@ class SongController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['image'] = Storage::disk('public')->put('/covers', $data['cover']);
-        $data['file'] = Storage::disk('public')->put('/music', $data['file']);
-        if (isset($data['tags'])) {
-            $tags = $data['tags'];
-            unset($data['tags']);
-        }
-        $song = Song::create($data);
-        if (isset($tags))
-            $song->tags()->attach($tags);
-
+        $this->service->store($data);
         return redirect()->route('admin.song.index');
     }
 
