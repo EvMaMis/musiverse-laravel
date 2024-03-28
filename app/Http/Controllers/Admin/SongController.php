@@ -54,19 +54,7 @@ class SongController extends Controller
 
     public function update(UpdateRequest $request, Song $song) {
         $data = $request->validated();
-        if(isset($data['cover'])) {
-            Storage::disk('public')->delete($song->image);
-            $data['image'] = Storage::disk('public')->put('/covers', $data['cover']);
-        }
-        if(isset($data['file'])){
-            Storage::disk('public')->delete($song->file);
-            $data['file'] = Storage::disk('public')->put('/music', $data['file']);
-        }
-        $tagIds = $data['tags'];
-        unset($data['tags']);
-
-        $song->update($data);
-        $song->tags()->sync($tagIds);
+        $this->service->update($song, $data);
 
         return redirect()->route('admin.song.index');
     }
