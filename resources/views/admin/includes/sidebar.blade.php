@@ -25,6 +25,18 @@
                 <a href="{{route('admin.song.index')}}" class="nav-link px-0 align-middle {{str_contains(url()->current(), 'song') ? 'active' : ''}}">
                     <i class="fs-4 fas fa-solid fa-music"></i> <span class="ms-1 d-none d-sm-inline">Композиции</span></a>
             </li>
+
+            <li class="nav-item w-100">
+                <a href="{{route('admin.role.index')}}" class="nav-link px-0 align-middle {{str_contains(url()->current(), 'roles') ? 'active' : ''}}">
+                    <i class="fs-4 fas fa-solid fa-pen-ruler"></i> <span class="ms-1 d-none d-sm-inline">Роли</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a href="{{route('admin.user.index')}}" class="nav-link px-0 align-middle {{str_contains(url()->current(), 'users') ? 'active' : ''}}">
+                    <i class="fs-4 fas fa-solid fa-user-tie"></i> <span class="ms-1 d-none d-sm-inline">Пользователи</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

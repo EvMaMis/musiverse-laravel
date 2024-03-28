@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,12 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'roles'], function() {
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
+    });
+
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('/', [UserController::class, 'store'])->name('admin.user.store');
     });
 });
 
