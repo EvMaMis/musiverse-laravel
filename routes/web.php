@@ -62,7 +62,9 @@ Route::group(['prefix' => 'admin'], function() {
     });
 
     Route::group(['prefix' => 'permissions'], function() {
-        Route::get('/', [PermissionController::class]);
+        Route::get('/', [PermissionController::class, 'index'])->name('admin.permission.index');
+        Route::get('/create', [PermissionController::class, 'create'])->name('admin.permission.create');
+        Route::post('/', [PermissionController::class, 'store'])->name('admin.permission.store');
     });
 
     Route::group(['prefix' => 'users'], function() {
