@@ -27,11 +27,6 @@
             </li>
 
             <li class="nav-item w-100">
-                <a href="{{route('admin.permission.index')}}" class="nav-link px-0 align-middle {{str_contains(url()->current(), 'permissions') ? 'active' : ''}}">
-                    <i class="fs-4 fas fa-solid fa-hammer"></i> <span class="ms-1 d-none d-sm-inline">Разрешения</span>
-                </a>
-            </li>
-            <li class="nav-item w-100">
                 <a href="{{route('admin.role.index')}}" class="nav-link px-0 align-middle {{str_contains(url()->current(), 'roles') ? 'active' : ''}}">
                     <i class="fs-4 fas fa-solid fa-pen-ruler"></i> <span class="ms-1 d-none d-sm-inline">Роли</span>
                 </a>

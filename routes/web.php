@@ -61,12 +61,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/', [RoleController::class, 'store'])->name('admin.role.store');
     });
 
-    Route::group(['prefix' => 'permissions'], function() {
-        Route::get('/', [PermissionController::class, 'index'])->name('admin.permission.index');
-        Route::get('/create', [PermissionController::class, 'create'])->name('admin.permission.create');
-        Route::post('/', [PermissionController::class, 'store'])->name('admin.permission.store');
-    });
-
     Route::group(['prefix' => 'users'], function() {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
