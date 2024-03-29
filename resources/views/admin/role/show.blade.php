@@ -15,7 +15,7 @@
             <td>
                 <ul class="list-unstyled list-group">
                 @foreach($role->permissions as $permission)
-                    <li class="list-group-item">{{$permission->name}}</li>
+                    <li class="list-group-item w-50" title="{{$permission->description}}">{{$permission->name}}</li>
                 @endforeach
                 </ul>
             </td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Role\StoreRequest;
+use App\Http\Requests\Admin\Role\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -44,11 +45,23 @@ class RoleController extends Controller
     }
 
     public function edit(Role $role) {
-        dd(2222);
+        $permissions = Permission::all();
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
-    public function update() {
-        dd(3333);
+    public function update(UpdateRequest $request, Role $role) {
+        $data = $request->validated();
+        if(isset($data['permissions'])) {
+            $permissions = $data['permissions'];
+            unset($data['permissions']);
+        }
+        $role->update($data);
+        if(isset($permissions)) {
+            $role->syncPermissions($permissions);
+        } else {
+            $role->permissions()->detach();
+        }
+        return redirect()->route('admin.role.index');
     }
 
     public function destroy(Role $role) {

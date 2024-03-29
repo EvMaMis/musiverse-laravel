@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Artist;
+namespace App\Http\Requests\Admin\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,8 +23,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'required', Rule::unique('artists', 'name')->ignore($this->id)],
-            'description' => 'string|required',
+            'name' => ['string', 'required', Rule::unique('roles', 'name')->ignore($this->id)],
+            'permissions' => 'array',
         ];
     }
 
@@ -32,9 +32,7 @@ class UpdateRequest extends FormRequest
         return [
             'name.string' => 'Заполните поле названия',
             'name.required' => 'Заполните поле названия',
-            'name.unique' => 'Такой исполнитель уже существует',
-            'description.string' => 'Заполните поле описания',
-            'description.required' => 'Заполните поле описания'
+            'name.unique' => 'Такая роль уже существует',
         ];
     }
 }
