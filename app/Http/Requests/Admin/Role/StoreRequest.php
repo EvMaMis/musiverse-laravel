@@ -24,7 +24,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'string|required|unique:roles',
             'permissions' => 'array',
-            'permissions.*' => 'integer',
         ];
     }
 

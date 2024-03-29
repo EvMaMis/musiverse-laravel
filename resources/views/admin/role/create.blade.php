@@ -20,7 +20,7 @@
                 <label for="permissions">Разрешения</label>
                 <select id="permissions" name="permissions[]" multiple="multiple" class="js-example-basic-multiple form-control">
                     @foreach($permissions as $permission)
-                        <option value="{{$permission->id}}" title="{{$permission->description}}">{{$permission->name}}</option>
+                        <option value="{{$permission->name}}" title="{{$permission->description}}">{{$permission->name}}</option>
                     @endforeach
                 </select>
             </div>
