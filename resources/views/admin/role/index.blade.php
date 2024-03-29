@@ -7,7 +7,8 @@
         <thead>
         <tr>
             <th scope="col" class="col-1">#</th>
-            <th scope="col" class="col-6">Название роли</th>
+            <th scope="col" class="col-4">Название роли</th>
+            <th scope="col" class="col-2">Количество разрешений</th>
             <th scope="col" class="col-2">Количество пользователей</th>
             <th scope="col" class="col-3 text-center" colspan="3">Управление</th>
         </tr>
@@ -17,7 +18,8 @@
         <tr class="align-middle">
             <th scope="row">{{$key+1}}</th>
             <td>{{$role->name}}</td>
-            <td>{{random_int(1,100)}}</td>
+            <td class="text-center">{{$role->permissions_count}}</td>
+            <td class="text-center">{{$role->users_count}}</td>
             <td class="col-1 text-center"><a href="{{route('admin.role.show', $role)}}"><i class="text-primary fas fa-eye"></i></a></td>
             <td class="col-1 text-center"><a href="{{route('admin.role.edit', $role)}}"><i class="text-success fas fa-pen"></i></a></td>
             <td class="col-1 text-center">
