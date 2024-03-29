@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Role\StoreRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -38,7 +39,8 @@ class RoleController extends Controller
     }
 
     public function show(Role $role) {
-        dd(1111);
+        $users = User::role($role->name)->get();
+        return view('admin.role.show', compact('role', 'users'));
     }
 
     public function edit(Role $role) {
