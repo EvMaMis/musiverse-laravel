@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Roboto&display=swap"
           rel="stylesheet">
     <link rel="icon" href="{{asset('images/icon.png')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <script src="{{asset('js/index.js')}}" defer></script>
     <title>MusiVerse</title>
 @endsection
@@ -30,21 +31,21 @@
 @endsection
 
 @section('header')
-    <div class="bg-black" style="background-color: black;">
-        <div class="container">
-            <div class="row">
-                <div class="offer">
-                    <h1>Откройте для себя новый <br>мир музыки</h1>
+    <div class="header">
+        <div class="container" style="padding-top: 100px;">
+            <div class="row justify-content-between">
+                <div class="offer col-4">
+                    <h1>Откройте для себя новый мир музыки</h1>
                     <div class="offer-hint">
-                        Миллионы музыкальных композиций
-                        <br>для ваших открытий. Вперед, в мир
-                        <br>новых открытий!
+                        Миллионы музыкальных композиций уже ждут вас. Вперед, в мир новых идей!
                     </div>
-                    <div class="btn-try">
+                    <div class="btn-try p-3">
                         Попробовать сейчас
                     </div>
                 </div>
-                <img src="{{asset('images/img1.png')}}" alt="playlists image">
+                <div class="col-5">
+                    <img src="{{asset('images/img1.png')}}" alt="playlists image">
+                </div>
             </div>
         </div>
     </div>
@@ -108,4 +109,4 @@
         </div>
     </div>
 
-    @endsection
+@endsection
