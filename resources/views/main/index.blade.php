@@ -30,22 +30,25 @@
 @endsection
 
 @section('header')
-    <div class="container">
-        <div class="row">
-            <div class="offer">
-                <h1>Откройте для себя новый <br>мир музыки</h1>
-                <div class="offer-hint">
-                    Миллионы музыкальных композиций
-                    <br>для ваших открытий. Вперед, в мир
-                    <br>новых открытий!
+    <div class="bg-black" style="background-color: black;">
+        <div class="container">
+            <div class="row">
+                <div class="offer">
+                    <h1>Откройте для себя новый <br>мир музыки</h1>
+                    <div class="offer-hint">
+                        Миллионы музыкальных композиций
+                        <br>для ваших открытий. Вперед, в мир
+                        <br>новых открытий!
+                    </div>
+                    <div class="btn-try">
+                        Попробовать сейчас
+                    </div>
                 </div>
-                <div class="btn-try">
-                    Попробовать сейчас
-                </div>
+                <img src="{{asset('images/img1.png')}}" alt="playlists image">
             </div>
-            <img src="{{asset('images/img1.png')}}" alt="playlists image">
         </div>
     </div>
+
 @endsection
 
 
@@ -106,6 +109,3 @@
     </div>
 
     @endsection
-    </body>
-
-    </html>
