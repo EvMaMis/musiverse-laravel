@@ -33,15 +33,16 @@
 @section('header')
     <div class="header">
         <div class="container" style="padding-top: 100px;">
-            <div class="row justify-content-between">
+            <div class="row justify-content-between align-items-center">
                 <div class="offer col-4">
-                    <h1>Откройте для себя новый мир музыки</h1>
-                    <div class="offer-hint">
+                    <div class="h1 text-center">Откройте для себя новый мир музыки</div>
+                    <div class="offer-hint" style="font-size: 1rem;">
                         Миллионы музыкальных композиций уже ждут вас. Вперед, в мир новых идей!
                     </div>
-                    <div class="btn-try p-3">
+                    <div class="btn-try p-3 d-sm-none d-md-block text-center w-75">
                         Попробовать сейчас
                     </div>
+                    <div class="btn-try p-3 d-md-none">Попробовать</div>
                 </div>
                 <div class="col-5">
                     <img src="{{asset('images/img1.png')}}" alt="playlists image">
@@ -57,21 +58,21 @@
     <div class="advantages" id="advantages">
         <div class="container">
             <h1>Наши преимущества</h1>
-            <div class="photos">
-                <div class="photo">
+            <div class="photos row justify-content-between align-items-baseline mt-5">
+                <div class="photo col-3">
                     <img src="{{asset('images/gallery_img1.png')}}" alt="playlists">
                     <div class="photo-description">
                         Добавляйте свои плейлисты
                         и знакомьтесь с новыми
                     </div>
                 </div>
-                <div class="photo">
+                <div class="photo col-3">
                     <img src="{{asset('images/gallery_img2.png')}}" alt="Anywhere and Anytime">
                     <div class="photo-description">
                         Слушайте любимую музыку на любой платформе
                     </div>
                 </div>
-                <div class="photo">
+                <div class="photo col-3">
                     <img src="{{asset('images/gallery_img3.png')}}" alt="No ads" style="scale: 1.5;">
                     <div class="photo-description">
                         Никогда не отвлекайтесь от прослушивания Никакой рекламы
@@ -82,10 +83,10 @@
     </div>
     <div class="try" id="try">
         <div class="container">
-            <h1>Готовы присоединиться?</h1>
+            <div class="text-center"><h1>Готовы присоединиться?</h1></div>
             <div class="btns">
                 <div class="btn-start">
-                    Открыть новый мир
+                    Создайте аккаунт
                 </div>
             </div>
         </div>
