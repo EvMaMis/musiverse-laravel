@@ -1,9 +1,8 @@
 @extends('layouts.main')
-    @section('head_meta')
+@section('head_meta')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Roboto&display=swap"
@@ -11,30 +10,24 @@
     <link rel="icon" href="{{asset('images/icon.png')}}">
     <script src="{{asset('js/index.js')}}" defer></script>
     <title>MusiVerse</title>
-    @endsection
+@endsection
 
 @section('navbar')
-        <div class="">
-            <img src="{{asset('images/logo.svg')}}" alt="Musi Verse">
-            <div class="logo-text">Musi Verse</div>
-            <nav id="menu">
-                <ul class="menu">
-                    <li>
-                        <a href="#">Главная</a>
-                    </li>
-                    <li>
-                        <a href="#advantages">Преимущества</a>
-                    </li>
-                    <li>
-                        <a href="#try">Попробовать</a>
-                    </li>
-                    <li>
-                        <a href="#contacts">Контакты</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        @endsection
+    <ul class="d-flex">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#advantages">Преимущества</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#try">Попробовать</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contacts">Контакты</a>
+        </li>
+    </ul>
+@endsection
 
 @section('header')
     <div class="container">
@@ -112,7 +105,7 @@
         </div>
     </div>
 
-@endsection
-</body>
+    @endsection
+    </body>
 
-</html>
+    </html>
