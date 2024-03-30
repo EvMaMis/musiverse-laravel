@@ -57,7 +57,7 @@ header a{
     margin-top: 133px;
 }
 
-.offer .h1 {
+.header .container .offer .h1 {
     color: var(--main-aqua-color)
 }
 
@@ -69,7 +69,7 @@ header a{
 .btn-try {
     background: linear-gradient(var(--main-cyan-color), #346664);
     border-radius: 50px;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: var(--main-gray-color);
     display: flex;
     justify-content: center;
