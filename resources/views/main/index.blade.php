@@ -1,58 +1,57 @@
 @extends('layouts.main')
-    @section('head_meta')
+@section('head_meta')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Roboto&display=swap"
           rel="stylesheet">
     <link rel="icon" href="{{asset('images/icon.png')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <script src="{{asset('js/index.js')}}" defer></script>
     <title>MusiVerse</title>
-    @endsection
+@endsection
 
 @section('navbar')
-        <div class="">
-            <img src="{{asset('images/logo.svg')}}" alt="Musi Verse">
-            <div class="logo-text">Musi Verse</div>
-            <nav id="menu">
-                <ul class="menu">
-                    <li>
-                        <a href="#">Главная</a>
-                    </li>
-                    <li>
-                        <a href="#advantages">Преимущества</a>
-                    </li>
-                    <li>
-                        <a href="#try">Попробовать</a>
-                    </li>
-                    <li>
-                        <a href="#contacts">Контакты</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        @endsection
+    <ul class="d-flex">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#advantages">Преимущества</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#try">Попробовать</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#contacts">Контакты</a>
+        </li>
+    </ul>
+@endsection
 
 @section('header')
-    <div class="container">
-        <div class="row">
-            <div class="offer">
-                <h1>Откройте для себя новый <br>мир музыки</h1>
-                <div class="offer-hint">
-                    Миллионы музыкальных композиций
-                    <br>для ваших открытий. Вперед, в мир
-                    <br>новых открытий!
+    <div class="header">
+        <div class="container" style="padding-top: 100px;">
+            <div class="row justify-content-between align-items-center d-flex flex-row-reverse flex-sm-row-reverse">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <img class="img-fluid" src="{{asset('images/img1.png')}}" alt="playlists image">
                 </div>
-                <div class="btn-try">
-                    Попробовать сейчас
+                <div class="offer col-md-4 col-12">
+                    <div class="h1 text-center">Откройте для себя новый мир музыки</div>
+                    <div class="offer-hint" style="font-size: 1rem;">
+                        Миллионы музыкальных композиций уже ждут вас. Вперед, в мир новых идей!
+                    </div>
+                    <div class="btn-try p-3 d-none d-md-block text-center w-100S">
+                        Попробовать сейчас
+                    </div>
+                    <div class="btn-try p-3 d-md-none">Попробовать</div>
                 </div>
+
             </div>
-            <img src="{{asset('images/img1.png')}}" alt="playlists image">
         </div>
     </div>
+
 @endsection
 
 
@@ -60,21 +59,21 @@
     <div class="advantages" id="advantages">
         <div class="container">
             <h1>Наши преимущества</h1>
-            <div class="photos">
-                <div class="photo">
+            <div class="photos d-flex row flex-md-row row-cols-md-2 row-cols-lg-3 flex-column justify-content-center align-items-center align-items-md-baseline align-items-lg-center mt-5">
+                <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img1.png')}}" alt="playlists">
                     <div class="photo-description">
                         Добавляйте свои плейлисты
                         и знакомьтесь с новыми
                     </div>
                 </div>
-                <div class="photo">
+                <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img2.png')}}" alt="Anywhere and Anytime">
                     <div class="photo-description">
                         Слушайте любимую музыку на любой платформе
                     </div>
                 </div>
-                <div class="photo">
+                <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img3.png')}}" alt="No ads" style="scale: 1.5;">
                     <div class="photo-description">
                         Никогда не отвлекайтесь от прослушивания Никакой рекламы
@@ -85,10 +84,10 @@
     </div>
     <div class="try" id="try">
         <div class="container">
-            <h1>Готовы присоединиться?</h1>
+            <div class="text-center"><h1>Готовы присоединиться?</h1></div>
             <div class="btns">
                 <div class="btn-start">
-                    Открыть новый мир
+                    Создайте аккаунт
                 </div>
             </div>
         </div>
@@ -113,6 +112,3 @@
     </div>
 
 @endsection
-</body>
-
-</html>

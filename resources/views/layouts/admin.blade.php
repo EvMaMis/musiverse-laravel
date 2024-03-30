@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="row flex-nowrap">
+    <div class="row" style="margin: 0;">
         @include('admin.includes.sidebar')
         <div class="col">
             @yield('main')

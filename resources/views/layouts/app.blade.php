@@ -24,6 +24,7 @@
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg" >
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{asset('images/logo.svg')}}" alt="Musi Verse" style="height:50px; width: 50%;">
                 MusiVerse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -77,7 +78,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid"  style="padding: 0;">
         @yield('content')
     </div>
 </div>

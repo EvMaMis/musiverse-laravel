@@ -6,7 +6,7 @@
     --main-black-color: #0B0C10;
 }
 
-body {
+.body {
     padding: 0;
     margin: 0;
     font-family: "Montserrat", sans-serif;
@@ -20,65 +20,56 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
-ul, li {
-    display: block;
-}
-
-header {
+.header {
     /* background: var(--main-dark-color); */
     background: linear-gradient(10deg, var(--main-dark-color), var(--main-black-color) 70%) no-repeat center top / cover;
 }
 
-.logo-text {
-    font-weight: 800;
-    font-size: 24px;
-    color: var(--main-gray-color);
-    margin-left: 16px;
-}
+/*.logo-text {*/
+/*    font-weight: 800;*/
+/*    font-size: 24px;*/
+/*    color: var(--main-gray-color);*/
+/*    margin-left: 16px;*/
+/*}*/
 
 header a{
     color: var(--main-gray-color);
-    text-decoration: none;
-    font-size: 24px;
 }
 
-.menu {
-    display: flex;
-    margin-left: auto;
-    width: 83%;
-}
+/*.menu {*/
+/*    display: flex;*/
+/*    margin-left: auto;*/
+/*    width: 83%;*/
+/*}*/
 
-.menu li {
-    margin-left: 34px;
-    transition: all 0.8s ease;
-}
+/*.menu li {*/
+/*    margin-left: 34px;*/
+/*    transition: all 0.8s ease;*/
+/*}*/
 
-.nav {
-    display: flex;
-    align-items: center;
-    padding-top: 64px;
-}
+/*.nav {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    padding-top: 64px;*/
+/*}*/
 
 .offer {
     margin-top: 133px;
 }
 
-.offer h1 {
+.header .container .offer .h1 {
     color: var(--main-aqua-color)
 }
 
 .offer-hint {
-    font-size: 24px;
     color: var(--main-gray-color);
     margin-top: 20px;
 }
 
 .btn-try {
     background: linear-gradient(var(--main-cyan-color), #346664);
-    width: 307px;
-    height: 77px;
     border-radius: 50px;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: var(--main-gray-color);
     display: flex;
     justify-content: center;
@@ -129,15 +120,6 @@ header a{
     border: 1px solid var(--main-cyan-color);
 }
 
-.row {
-    display: flex;
-    align-items: center;
-}
-
-.row img {
-    margin-top: 65px;
-}
-
 .advantages {
     padding-top: 65px;
     /* background: var(--main-black-color); */
@@ -153,9 +135,6 @@ header a{
 
 .photos {
     margin-top: 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .photo-description {
@@ -170,7 +149,6 @@ header a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 320px;
 }
 
 .photo img {
