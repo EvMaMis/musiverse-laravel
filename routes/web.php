@@ -3,16 +3,16 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\GenreController;
-use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']],  function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
 
     Route::group(['prefix' => 'genres'], function() {
@@ -76,6 +76,6 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
