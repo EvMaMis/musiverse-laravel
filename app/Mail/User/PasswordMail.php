@@ -38,7 +38,7 @@ class PasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.users.password',
+            markdown: 'mail.users.password',
         );
     }
 
