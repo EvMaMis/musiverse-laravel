@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PasswordMail extends Mailable
+class PasswordMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class PasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.users.password',
+            markdown: 'mail.users.password',
         );
     }
 
@@ -51,4 +51,6 @@ class PasswordMail extends Mailable
     {
         return [];
     }
+
+
 }

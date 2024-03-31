@@ -19,7 +19,7 @@
             <th scope="row">{{$key+1}}</th>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>Пользователь</td>
+            <td>{{$user->getRoleNames()}}</td>
             <td class="col-1 text-center"><a href="{{route('admin.user.show', $user)}}"><i class="text-primary fas fa-eye"></i></a></td>
             <td class="col-1 text-center"><a href="{{route('admin.user.edit', $user)}}"><i class="text-success fas fa-pen"></i></a></td>
             <td class="col-1 text-center">
