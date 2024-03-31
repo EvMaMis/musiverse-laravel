@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Jobs\StoreUserJob;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -28,8 +27,8 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
-    public function show() {
-
+    public function show(User $user) {
+        return view('admin.user.show', compact('user'));
     }
 
     public function edit() {
