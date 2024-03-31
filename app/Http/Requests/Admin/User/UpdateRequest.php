@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Admin\Tag;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,14 +23,18 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|required'
+            'name' => 'string|required',
+            'email' => ['string', 'required', Rule::unique('users', 'email')->ignore($this->id)],
+            'role' => 'string|required',
         ];
     }
 
     public function messages() : array {
         return [
-            'title.string' => 'Заполните поле названия',
-            'title.required' => 'Заполните поле названия',
+            'name' => 'Заполните поле названия',
+            'email.unique' => 'Эта почта уже используется',
+            'email' => 'Заполните поле электронной почты',
+            'role' => 'Заполните поле роли пользователя',
         ];
     }
 }
