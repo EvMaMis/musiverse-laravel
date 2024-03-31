@@ -47,7 +47,9 @@ class UserController extends Controller
 
     }
 
-    public function destroy() {
-
+    public function destroy(User $user) {
+        $user->removeRole($user->getRoleNames()->first());
+        $user->delete();
+        return redirect()->route('admin.user.index' );
     }
 }

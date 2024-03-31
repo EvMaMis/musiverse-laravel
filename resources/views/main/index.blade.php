@@ -87,8 +87,9 @@
             <div class="text-center"><h1>Готовы присоединиться?</h1></div>
             <div class="btns">
                 <div class="btn-start">
-                    <a href='{{route('home')}}'></a>
+                    <a href='{{route('home')}}'>
                     Создайте аккаунт
+                    </a>
                 </div>
             </div>
         </div>
