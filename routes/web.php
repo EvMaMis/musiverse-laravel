@@ -8,15 +8,28 @@ use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
+use App\Http\Controllers\Personal\PlaylistController;
+use App\Http\Controllers\Personal\RecommendationController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MainController::class, 'index']);
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::class]],  function() {
+Route::get('/', [MainController::class, 'index'])->name('main.index');
+Route::get('/top', [MainController::class, 'top'])->name('main.top');
+
+Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'playlists'], function () {
+        Route::get('/', [PlaylistController::class, 'index'])->name('personal.playlist.index');
+    });
+    Route::group(['prefix' => 'recommendations'], function () {
+        Route::get('/', [RecommendationController::class, 'index'])->name('personal.recommendation.index');
+    });
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::class]], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
 
-    Route::group(['prefix' => 'genres'], function() {
+    Route::group(['prefix' => 'genres'], function () {
         Route::get('/', [GenreController::class, 'index'])->name('admin.genre.index');
         Route::get('/create', [GenreController::class, 'create'])->name('admin.genre.create');
         Route::post('/', [GenreController::class, 'store'])->name('admin.genre.store');
@@ -26,7 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::cla
         Route::delete('/{genre}', [GenreController::class, 'destroy'])->name('admin.genre.destroy');
     });
 
-    Route::group(['prefix' => 'tags'], function() {
+    Route::group(['prefix' => 'tags'], function () {
         Route::get('/', [TagController::class, 'index'])->name('admin.tag.index');
         Route::get('/create', [TagController::class, 'create'])->name('admin.tag.create');
         Route::post('/', [TagController::class, 'store'])->name('admin.tag.store');
@@ -36,7 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::cla
         Route::delete('/{tag}', [TagController::class, 'destroy'])->name('admin.tag.destroy');
     });
 
-    Route::group(['prefix' => 'artists'], function() {
+    Route::group(['prefix' => 'artists'], function () {
         Route::get('/', [ArtistController::class, 'index'])->name('admin.artist.index');
         Route::get('/create', [ArtistController::class, 'create'])->name('admin.artist.create');
         Route::post('/', [ArtistController::class, 'store'])->name('admin.artist.store');
@@ -46,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::cla
         Route::delete('/{artist}', [ArtistController::class, 'destroy'])->name('admin.artist.destroy');
     });
 
-    Route::group(['prefix' => 'songs'], function() {
+    Route::group(['prefix' => 'songs'], function () {
         Route::get('/', [SongController::class, 'index'])->name('admin.song.index');
         Route::get('/create', [SongController::class, 'create'])->name('admin.song.create');
         Route::post('/', [SongController::class, 'store'])->name('admin.song.store');
@@ -56,7 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::cla
         Route::delete('/{song}', [SongController::class, 'destroy'])->name('admin.song.destroy');
     });
 
-    Route::group(['prefix' => 'roles'], function() {
+    Route::group(['prefix' => 'roles'], function () {
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/create', [RoleController::class, 'create'])->name('admin.role.create');
         Route::post('/', [RoleController::class, 'store'])->name('admin.role.store');
@@ -66,7 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::cla
         Route::delete('/{role}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
     });
 
-    Route::group(['prefix' => 'users'], function() {
+    Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
         Route::post('/', [UserController::class, 'store'])->name('admin.user.store');

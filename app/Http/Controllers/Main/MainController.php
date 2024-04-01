@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index() {
-        return view('main.index');
+        if(auth()->user())
+            return view('main.posts');
+        return view('main.offer');
     }
 }
