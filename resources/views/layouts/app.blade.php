@@ -62,9 +62,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if(auth()->user()->hasAnyAdminPermissions())
                                 <a class="dropdown-item" href="{{route('admin.main.index')}}">
                                     {{__('Admin Panel')}}
                                 </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
