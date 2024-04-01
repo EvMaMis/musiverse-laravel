@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
+use App\Http\Controllers\Personal\PersonalController;
 use App\Http\Controllers\Personal\PlaylistController;
 use App\Http\Controllers\Personal\RecommendationController;
 use App\Http\Middleware\AdminMiddleware;
@@ -18,6 +19,7 @@ Route::get('/', [MainController::class, 'index'])->name('main.index');
 Route::get('/top', [MainController::class, 'top'])->name('main.top');
 
 Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
+    Route::get('/', [PersonalController::class, 'index'])->name('personal.index');
     Route::group(['prefix' => 'playlists'], function () {
         Route::get('/', [PlaylistController::class, 'index'])->name('personal.playlist.index');
     });
@@ -26,7 +28,7 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
     });
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::class]], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
 
     Route::group(['prefix' => 'genres'], function () {

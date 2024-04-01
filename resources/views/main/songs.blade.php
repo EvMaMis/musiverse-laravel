@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('head_meta')
     <title>Я лох</title>
 @endsection
@@ -17,4 +17,14 @@
             <a class="nav-link" href="{{route('personal.recommendation.index')}}">Рекомендации</a>
         </li>
     </ul>
+@endsection
+
+@section('main')
+    <div class="container">
+        <div>21312312</div>
+    </div>
+@endsection
+
+@section('sidebar')
+    @include('includes.sidebar')
 @endsection
