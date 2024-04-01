@@ -8,11 +8,12 @@ use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']],  function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleware::class]],  function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
 
     Route::group(['prefix' => 'genres'], function() {

@@ -21,6 +21,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'edit songs', 'description' => 'Разрешение на изменение композиций']);
         Permission::create(['name' => 'delete songs', 'description' => 'Разрешение на удаление композиций']);
 
-
+        Permission::create(['name' => 'user', 'description' => 'Авторизованый пользователь, автоматически назначается всем зарегистрированным пользователям']);
     }
 }
