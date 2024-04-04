@@ -28,7 +28,7 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
     });
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', AdminMiddleware::class]], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.main.index');
 
     Route::group(['prefix' => 'genres'], function () {

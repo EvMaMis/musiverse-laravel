@@ -19,7 +19,7 @@ This site was built using [GitHub Pages](https://evmamis.github.io/musiverse-lar
 > 1. Run git clone https://github.com/EvMaMis/laravel-blog.git
 > 2. Run composer install
 > 3. Run npm install
-> 4. Rename .env.example to .env
+> 4. Run copy env.example .env
 > 5. Setup Mail service in .env (mailtrap in my case)
 > 6. Run php artisan key:generate
 > 7. Run php artisan migrate
