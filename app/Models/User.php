@@ -56,6 +56,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function hasAnyAdminPermissions() {
-        return count($this->getAllPermissions()->where('name', '!=', 'user')) > 0;
+        return count($this->getAllPermissions()) > 0;
     }
 }
