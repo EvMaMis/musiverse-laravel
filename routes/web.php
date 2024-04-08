@@ -48,7 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::post('songs/', [SongController::class, 'store'])->name('admin.song.store');
         });
 
-
         // Basic routes for showing elements
         Route::group(['prefix' => 'genres'], function () {
             Route::get('/', [GenreController::class, 'index'])->name('admin.genre.index');

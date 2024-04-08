@@ -2,7 +2,11 @@
 
 @section('main')
     <div class="h1">Жанры музыки</div>
-    <a href="{{route('admin.genre.create')}}"><div class="btn btn-success">Добавить жанр</div></a>
+    @canany(['Add', 'Suggest'])
+        <a href="{{route('admin.genre.create')}}">
+            <div class="btn btn-success">Добавить жанр</div>
+        </a>
+    @endcanany
     <table class="table">
         <thead>
         <tr>
@@ -14,20 +18,26 @@
         </thead>
         <tbody>
         @foreach($genres as $key=>$genre)
-        <tr class="align-middle">
-            <th scope="row">{{$key+1}}</th>
-            <td>{{$genre->title}}</td>
-            <td>{{random_int(1,100)}}</td>
-            <td class="col-1 text-center"><a href="{{route('admin.genre.show', $genre)}}"><i class="text-primary fas fa-eye"></i></a></td>
-            <td class="col-1 text-center"><a href="{{route('admin.genre.edit', $genre)}}"><i class="text-success fas fa-pen"></i></a></td>
-            <td class="col-1 text-center">
-                <form action="{{route('admin.genre.destroy', $genre)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
-                </form>
-            </td>
-        </tr>
+            <tr class="align-middle">
+                <th scope="row">{{$key+1}}</th>
+                <td>{{$genre->title}}</td>
+                <td>{{random_int(1,100)}}</td>
+                <td class="col-1 text-center"><a href="{{route('admin.genre.show', $genre)}}"><i
+                            class="text-primary fas fa-eye"></i></a></td>
+                @can('Edit')
+                    <td class="col-1 text-center"><a href="{{route('admin.genre.edit', $genre)}}"><i
+                                class="text-success fas fa-pen"></i></a></td>
+                @endcan
+                @can('Delete')
+                    <td class="col-1 text-center">
+                        <form action="{{route('admin.genre.destroy', $genre)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                @endcan
+            </tr>
         @endforeach
         </tbody>
     </table>

@@ -2,7 +2,11 @@
 
 @section('main')
     <div class="h1">Исполнители</div>
-    <a href="{{route('admin.artist.create')}}"><div class="btn btn-success">Добавить исполнителя</div></a>
+    @canany(['Add', 'Suggest'])
+        <a href="{{route('admin.artist.create')}}">
+            <div class="btn btn-success">Добавить исполнителя</div>
+        </a>
+    @endcanany
     <table class="table">
         <thead>
         <tr>
@@ -14,20 +18,26 @@
         </thead>
         <tbody>
         @foreach($artists as $key=>$artist)
-        <tr class="align-middle">
-            <th scope="row">{{$key+1}}</th>
-            <td>{{$artist->name}}</td>
-            <td>{{random_int(1,100)}}</td>
-            <td class="col-1 text-center"><a href="{{route('admin.artist.show', $artist)}}"><i class="text-primary fas fa-eye"></i></a></td>
-            <td class="col-1 text-center"><a href="{{route('admin.artist.edit', $artist)}}"><i class="text-success fas fa-pen"></i></a></td>
-            <td class="col-1 text-center">
-                <form action="{{route('admin.artist.destroy', $artist)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
-                </form>
-            </td>
-        </tr>
+            <tr class="align-middle">
+                <th scope="row">{{$key+1}}</th>
+                <td>{{$artist->name}}</td>
+                <td>{{random_int(1,100)}}</td>
+                <td class="col-1 text-center"><a href="{{route('admin.artist.show', $artist)}}"><i
+                            class="text-primary fas fa-eye"></i></a></td>
+                @can('Edit')
+                    <td class="col-1 text-center"><a href="{{route('admin.artist.edit', $artist)}}"><i
+                                class="text-success fas fa-pen"></i></a></td>
+                @endcan
+                @can('Delete')
+                    <td class="col-1 text-center">
+                        <form action="{{route('admin.artist.destroy', $artist)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                @endcan
+            </tr>
         @endforeach
         </tbody>
     </table>

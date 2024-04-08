@@ -2,9 +2,11 @@
 
 @section('main')
     <div class="h1">Композиции</div>
-    <a href="{{route('admin.song.create')}}">
-        <div class="btn btn-success">Добавить композицию</div>
-    </a>
+    @canany(['Add', 'Suggest'])
+        <a href="{{route('admin.song.create')}}">
+            <div class="btn btn-success">Добавить композицию</div>
+        </a>
+    @endcanany
     <table class="table">
         <thead>
         <tr>
@@ -22,15 +24,19 @@
                 <td>{{$song->artist->name}}</td>
                 <td class="col-1 text-center"><a href="{{route('admin.song.show', $song)}}"><i
                             class="text-primary fas fa-eye"></i></a></td>
-                <td class="col-1 text-center"><a href="{{route('admin.song.edit', $song)}}"><i
-                            class="text-success fas fa-pen"></i></a></td>
-                <td class="col-1 text-center">
-                    <form action="{{route('admin.song.destroy', $song)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
-                    </form>
-                </td>
+                @can('Edit')
+                    <td class="col-1 text-center"><a href="{{route('admin.song.edit', $song)}}"><i
+                                class="text-success fas fa-pen"></i></a></td>
+                @endcan
+                @can('Delete')
+                    <td class="col-1 text-center">
+                        <form action="{{route('admin.song.destroy', $song)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn"><i class="text-danger fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                @endcan
             </tr>
         @endforeach
         </tbody>

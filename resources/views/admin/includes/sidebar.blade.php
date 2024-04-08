@@ -12,7 +12,7 @@
                         class="ms-1 d-none d-sm-inline">Главная</span>
                 </a>
             </li>
-            @canany(['Edit', 'Add', 'Suggest', 'Remove'])
+            @canany(['Edit', 'Add', 'Suggest', 'Delete'])
             <li class="nav-item w-100">
                 <a href="{{route('admin.genre.index')}}"
                    class="nav-link px-0 align-middle {{str_contains(url()->current(), 'genres') ? 'active' : ''}}">
