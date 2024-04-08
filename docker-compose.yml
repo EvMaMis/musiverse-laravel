@@ -16,6 +16,8 @@ services:
         build:
             context: .
             dockerfile: _docker/app/DockerFile
+        ports:
+            - 5173:5173
         volumes:
             - ./:/var/www
         depends_on:
@@ -28,7 +30,7 @@ services:
         volumes:
             - ./tmp/db:/var/lib/mysql
         environment:
-            MYSQL_DATABASE: laravel-docker
+            MYSQL_DATABASE: musiverse-laravel
             MYSQL_ROOT_PASSWORD: root
         ports:
             - 8101:3306
