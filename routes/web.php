@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::post('tags/', [TagController::class, 'store'])->name('admin.tag.store');
 
             Route::get('artists/create', [ArtistController::class, 'create'])->name('admin.artist.create');
-            Route::post('artitst/', [ArtistController::class, 'store'])->name('admin.artist.store');
+            Route::post('artists/', [ArtistController::class, 'store'])->name('admin.artist.store');
 
             Route::get('songs/create', [SongController::class, 'create'])->name('admin.song.create');
             Route::post('songs/', [SongController::class, 'store'])->name('admin.song.store');
