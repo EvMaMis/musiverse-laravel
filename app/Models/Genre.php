@@ -10,5 +10,11 @@ class Genre extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [];
+
+    public function songs()
+    {
+        return $this->belongsTo(Song::class);
+    }
 }

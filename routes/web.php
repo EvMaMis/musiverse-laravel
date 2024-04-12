@@ -84,7 +84,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::patch('songs/{song}', [SongController::class, 'update'])->name('admin.song.update');
         });
 
-
         // Checks if user can delete anything
         Route::group(['middleware' => 'permission:Delete'], function () {
             Route::delete('genres/{genre}', [GenreController::class, 'destroy'])->name('admin.genre.destroy');
