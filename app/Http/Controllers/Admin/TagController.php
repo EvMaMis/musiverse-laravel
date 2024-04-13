@@ -10,7 +10,7 @@ use App\Models\Tag;
 class TagController extends Controller
 {
     public function index() {
-        $tags = Tag::all();
+        $tags = Tag::withCount('songs')->get();
         return view('admin.tag.index', compact('tags'));
     }
     public function show(Tag $tag) {

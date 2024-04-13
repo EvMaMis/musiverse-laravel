@@ -21,7 +21,7 @@
             <tr class="align-middle">
                 <th scope="row">{{$key+1}}</th>
                 <td>{{$tag->title}}</td>
-                <td>{{random_int(1,100)}}</td>
+                <td>{{$tag->songs_count}}</td>
                 <td class="col-1 text-center"><a href="{{route('admin.tag.show', $tag)}}"><i
                             class="text-primary fas fa-eye"></i></a></td>
                 @can('Edit')

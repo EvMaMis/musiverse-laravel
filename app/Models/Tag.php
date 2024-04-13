@@ -12,4 +12,8 @@ class Tag extends Model
     use SoftDeletes;
     protected $table = 'tags';
     protected $guarded = false;
+
+    public function songs() {
+        return $this->belongsToMany(Song::class, 'song_tag', 'tag_id', 'song_id');
+    }
 }

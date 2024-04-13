@@ -11,6 +11,7 @@
                 @error('title')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
+                <input type="hidden" name="id" value="{{$genre->id}}">
             </div>
         </div>
         <input type="submit" class="btn btn-success" value="Обновить жанр">

@@ -10,7 +10,7 @@ use App\Models\Genre;
 class GenreController extends Controller
 {
     public function index() {
-        $genres = Genre::all();
+        $genres = Genre::withCount('songs')->get();
         return view('admin.genre.index', compact('genres'));
     }
 

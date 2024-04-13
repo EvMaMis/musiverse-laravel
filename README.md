@@ -24,9 +24,10 @@ This site was built using [GitHub Pages](https://evmamis.github.io/musiverse-lar
 > 6. Run php artisan key:generate
 > 7. Run php artisan migrate
 > 8. Run php artisan serve
-> 9. Run npm run dev
-> 10. Go to link localhost:8000
-> 11. Have fun and happy hacking)
+> 9. Run php artisan storage:link
+> 10. Run npm run dev
+> 11. Go to link localhost:8000
+> 12. Have fun and happy hacking)
 ### Screenshots
 Offer page
 ![Imgur](https://i.imgur.com/v6IH5xo.png)

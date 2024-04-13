@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ArtistController extends Controller
 {
     public function index() {
-        $artists = Artist::all();
+        $artists = Artist::withCount('songs')->get();
         return view('admin.artist.index', compact('artists'));
     }
 
