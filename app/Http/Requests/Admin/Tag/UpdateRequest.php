@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Tag;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,14 +23,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|required'
+            'title' => ['string', 'required', Rule::unique('tags', 'title')->ignore($this->id)],
         ];
     }
 
     public function messages() : array {
         return [
-            'title.string' => 'Заполните поле названия',
-            'title.required' => 'Заполните поле названия',
+            'title.unique' => 'The title has already been taken.',
+            'title' => 'This field can\'t be empty',
         ];
     }
 }
