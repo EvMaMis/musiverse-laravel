@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Genre;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -22,14 +23,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|required'
+            'title' => ['string', 'required', Rule::unique('genres', 'title')->ignore($this->id)],
         ];
     }
 
     public function messages() : array {
         return [
-            'title.string' => 'Заполните поле названия',
-            'title.required' => 'Заполните поле названия',
+            'title.unique' => 'This title has already been taken',
+            'title' => 'This field can\'t be empty',
         ];
     }
 }
