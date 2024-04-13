@@ -13,4 +13,8 @@ class Artist extends Model
     protected $table = 'artists';
 
     protected $guarded = false;
+
+    public function songs() {
+        return $this->hasMany(Song::class);
+    }
 }
