@@ -7,7 +7,7 @@
             <td>{{$genre->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Название жанра</th>
+            <th scope="row">{{__('Genre title')}}</th>
             <td>{{$genre->title}}</td>
         </tr>
     </table>

@@ -8,15 +8,15 @@
             <td>{{$user->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Имя пользователя</th>
+            <th scope="row">{{__('Username')}}</th>
             <td>{{$user->name}}</td>
         </tr>
         <tr>
-            <th scope="row">Почта</th>
+            <th scope="row">{{__('Email')}}</th>
             <td>{{$user->email}}</td>
         </tr>
         <tr>
-            <th scope="row">Роль</th>
+            <th scope="row">{{__('Roles')}}</th>
             <td>{{$user->getRoleNames()->first()}}</td>
         </tr>
     </table>

@@ -7,11 +7,11 @@
             <td>{{$artist->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Имя исполнителя</th>
+            <th scope="row">{{__('Artist name')}}</th>
             <td>{{$artist->name}}</td>
         </tr>
         <tr>
-            <th scope="row">Описание</th>
+            <th scope="row">{{__('Description')}}</th>
             <td>{!! $artist->description !!}</td>
         </tr>
     </table>

@@ -6,18 +6,18 @@
 @endsection
 
 @section('main')
-    <div class="h1 mt-3">Добавить композицию</div>
+    <div class="h1 mt-3">{{__('Add track')}}</div>
 <form action="{{route('admin.song.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form-group col-6 mt-3">
-        <label for="title" class="form-label">Название песни</label>
-        <input type="text" class="form-control" name="title" value="{{old('title')}}">
+        <label for="title" class="form-label">{{__('Track title')}}</label>
+        <input type="text" class="form-control" name="title" value="{{old('title')}}" placeholder="{{__('Title')}}">
         @error('title')
         <div class="text-danger">{{$message}}</div>
         @enderror
     </div>
     <div class="form-group col-6 mt-3">
-        <label for="artist-select" class="form-label">Исполнитель</label>
+        <label for="artist-select" class="form-label">{{__('Artist name')}}</label>
         <select name="artist_id" id="artist-select" class="js-example-basic-single form-control">
             @foreach($artists as $artist)
                 <option value="{{$artist->id}}">{{$artist->name}}</option>
@@ -28,7 +28,7 @@
         @enderror
     </div>
     <div class="form-group col-6 mt-3">
-        <label for="genre_id" class="form-label">Жанр композиции</label>
+        <label for="genre_id" class="form-label">{{__('Genre')}}</label>
         <select name="genre_id" id="genre-select" class="js-example-basic-single form-control">
             @foreach($genres as $genre)
             <option value="{{$genre->id}}">{{$genre->title}}</option>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group col-6 mt-3">
-        <label for="tags" class="form-label">Теги композиции</label>
+        <label for="tags" class="form-label">{{__('Tags')}}</label>
         <select name="tags[]" id="tags" class="js-example-basic-multiple form-control" multiple="multiple">
             @foreach($tags as $tag)
                 <option value="{{$tag->id}}">{{$tag->title}}</option>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="mt-3 col-6">
-        <label for="File" class="form-label">Обложка</label>
+        <label for="File" class="form-label">{{__('Cover')}}</label>
         <input class="form-control" type="file" id="File" name="cover">
         @error('cover')
         <div class="text-danger">{{$message}}</div>
@@ -57,14 +57,14 @@
     </div>
 
     <div class="mt-3 col-6">
-        <label for="formFile" class="form-label">Файл композиции</label>
+        <label for="formFile" class="form-label">{{__('Music file')}}</label>
         <input class="form-control" type="file" id="formFile" name="file">
         @error('file')
         <div class="text-danger">{{$message}}</div>
         @enderror
     </div>
 
-    <input type="submit" class="btn btn-success" value="Добавить">
+    <input type="submit" class="btn btn-success mt-2" value="{{__('Add track')}}">
 </form>
 @endsection
 

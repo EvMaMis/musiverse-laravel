@@ -7,7 +7,7 @@
             <td>{{$tag->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Название тега</th>
+            <th scope="row">{{__('Title')}}</th>
             <td>{{$tag->title}}</td>
         </tr>
     </table>

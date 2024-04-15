@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('main')
-    <div class="h1">Пользователи</div>
-    <a href="{{route('admin.user.create')}}"><div class="btn btn-success">Добавить пользователя</div></a>
+    <div class="h1">{{__('Users')}}</div>
+    <a href="{{route('admin.user.create')}}"><div class="btn btn-success">{{__('Add user')}}</div></a>
     <table class="table">
         <thead>
         <tr>
             <th scope="col" class="col-1">#</th>
-            <th scope="col" class="col-3">Имя</th>
-            <th scope="col" class="col-3">Email</th>
-            <th scope="col" class="col-2">Роль</th>
-            <th scope="col" class="col-3 text-center" colspan="3">Управление</th>
+            <th scope="col" class="col-3">{{__('Username')}}</th>
+            <th scope="col" class="col-3">{{__('Email')}}</th>
+            <th scope="col" class="col-2">{{__('Role')}}</th>
+            <th scope="col" class="col-3 text-center" colspan="3">{{__('Manage')}}</th>
         </tr>
         </thead>
         <tbody>

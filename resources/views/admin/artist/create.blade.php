@@ -11,16 +11,16 @@
         @csrf
         <div class="row">
             <div class="col-4">
-                <label for="name" class="form-check-label mb-2">Введите исполнителя</label>
-                <input id="name" type="text" placeholder="Имя исполнителя" class="form-control mb-3" name="name"
+                <label for="name" class="form-check-label mb-2">{{__('Artist name')}}</label>
+                <input id="name" type="text" placeholder="{{__('Name')}}" class="form-control mb-3" name="name"
                        value="{{old('name')}}">
                 @error('name')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="col-10">
-                <label for="summernote" class="form-check-label mb-2">Описание исполнителя</label>
-                <textarea class="summernote" id="summernote" type="text" placeholder="Имя исполнителя"
+                <label for="summernote" class="form-check-label mb-2">{{__('Biography')}}</label>
+                <textarea class="summernote" id="summernote" type="text" placeholder="{{__('Description')}}"
                           name="description">{{old('description')}}</textarea>
                 @error('description')
                 <div class="text-danger">{{$message}}</div>
@@ -28,7 +28,7 @@
             </div>
 
         </div>
-        <input type="submit" class="btn btn-success" value="Добавить исполнителя">
+        <input type="submit" class="btn btn-success" value="{{__('Add artist')}}">
     </form>
     <script type="text/javascript">
         $(document).ready(function () {

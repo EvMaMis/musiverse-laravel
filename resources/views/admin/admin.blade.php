@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main')
-    <div class="h1 text-center">Админ панель</div>
+    <div class="h1 text-center">Admin panel</div>
     <div class="row row-cols-1 justify-content-center row-cols-md-2 row-cols-xxl-3 justify-content-lg-between p-4">
         @canany(['Add', 'Suggest', 'Delete', 'Edit'])
             <div class="col card text-white bg-dark mb-3" style="max-width: 18rem;">

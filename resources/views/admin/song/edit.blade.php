@@ -6,19 +6,19 @@
 @endsection
 
 @section('main')
-    <div class="h1 mt-3">Изменение композиции</div>
+    <div class="h1 mt-3">{{__('Track edit')}}</div>
 <form action="{{route('admin.song.update', $song)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
     <div class="form-group col-6 mt-3">
-        <label for="title" class="form-label">Название песни</label>
+        <label for="title" class="form-label">{{__('Track title')}}</label>
         <input type="text" class="form-control" name="title" value="{{$song->title}}">
         @error('title')
         <div class="text-danger">{{$message}}</div>
         @enderror
     </div>
     <div class="form-group col-6 mt-3">
-        <label for="artist-select" class="form-label">Исполнитель</label>
+        <label for="artist-select" class="form-label">{{__('Artist name')}}</label>
         <select name="artist_id" id="artist-select" class="js-example-basic-single form-control">
             @foreach($artists as $artist)
                 <option value="{{$artist->id}}" {{$song->artist_id === $artist->id ? 'selected' : ''}}>{{$artist->name}}</option>
@@ -29,7 +29,7 @@
         @enderror
     </div>
     <div class="form-group col-6 mt-3">
-        <label for="genre_id" class="form-label">Жанр композиции</label>
+        <label for="genre_id" class="form-label">{{__('Genre')}}</label>
         <select name="genre_id" id="genre-select" class="js-example-basic-single form-control">
             @foreach($genres as $genre)
             <option value="{{$genre->id}}" {{$song->genre_id === $genre->id ? 'selected' : ''}}>{{$genre->title}}</option>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group col-6 mt-3">
-        <label for="tags" class="form-label">Теги композиции</label>
+        <label for="tags" class="form-label">{{__('Tags')}}</label>
         <select name="tags[]" id="tags" class="js-example-basic-multiple form-control" multiple="multiple">
             @foreach($tags as $tag)
                 <option value="{{$tag->id}}" {{in_array($tag->id, $song->tags->pluck('id')->all()) ? 'selected' : ''}}>{{$tag->title}}</option>
@@ -51,9 +51,9 @@
 
     <div class="mt-3 col-6">
         <hr>
-        <img src="{{asset('/storage/' . $song->image)}}" alt="Обложка композиции" class="img-thumbnail">
+        <img src="{{asset('/storage/' . $song->image)}}" alt="{{__('Cover')}}" class="img-thumbnail">
         <br>
-        <label for="File" class="form-label mt-2">Обложка</label>
+        <label for="File" class="form-label mt-2">{{__('Cover change')}}</label>
         <input class="form-control" type="file" id="File" name="cover">
         @error('cover')
         <div class="text-danger">{{$message}}</div>
@@ -64,7 +64,7 @@
     <div class="mt-3 col-6">
         <audio controls src="{{asset('/storage/' . $song->file)}}"></audio>
         <br>
-        <label for="formFile" class="form-label">Файл композиции</label>
+        <label for="formFile" class="form-label">{{__('Music file')}}</label>
         <input class="form-control" type="file" id="formFile" name="file">
         @error('file')
         <div class="text-danger">{{$message}}</div>
@@ -72,7 +72,7 @@
         <hr>
     </div>
 
-    <input type="submit" class="btn btn-success" value="Обновить">
+    <input type="submit" class="btn btn-success" value="{{__('Update track')}}">
 </form>
 @endsection
 

@@ -10,21 +10,21 @@
     <form action="{{route('admin.role.store')}}" method="POST">
         @csrf
             <div class="col-4">
-                <label for="name" class="form-check-label mb-2">Название роли</label>
-                <input id="name" type="text" placeholder="Роль..." class="form-control mb-3" name="name" value="{{old('name')}}">
+                <label for="name" class="form-check-label mb-2">{{__('Role title')}}</label>
+                <input id="name" type="text" placeholder="{{__('Title')}}" class="form-control mb-3" name="name" value="{{old('name')}}">
                 @error('name')
                 <div class="text-danger">{{$message}}</div>
                 @enderror
             </div>
             <div class="col-4">
-                <label for="permissions">Разрешения</label>
+                <label for="permissions">{{__('Permissions')}}</label>
                 <select id="permissions" name="permissions[]" multiple="multiple" class="js-example-basic-multiple form-control">
                     @foreach($permissions as $permission)
-                        <option value="{{$permission->name}}" title="{{$permission->description}}">{{$permission->name}}</option>
+                        <option value="{{$permission->name}}" title="{{__($permission->description)}}">{{__($permission->name)}}</option>
                     @endforeach
                 </select>
             </div>
-        <input type="submit" class="btn btn-success" value="Добавить роль">
+        <input type="submit" class="btn btn-success" value="{{__('Add role')}}">
     </form>
 @endsection
 

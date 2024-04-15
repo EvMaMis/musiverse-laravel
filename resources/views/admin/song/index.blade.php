@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
 @section('main')
-    <div class="h1">Композиции</div>
+    <div class="h1">{{__('Tracks')}}</div>
     @canany(['Add', 'Suggest'])
         <a href="{{route('admin.song.create')}}">
-            <div class="btn btn-success">Добавить композицию</div>
+            <div class="btn btn-success">{{__('Add track')}}</div>
         </a>
     @endcanany
     <table class="table">
         <thead>
         <tr>
             <th scope="col" class="col-1">#</th>
-            <th scope="col" class="col-5">Название</th>
-            <th scope="col" class="col-3">Исполнитель</th>
-            <th scope="col" class="col-3 text-center" colspan="3">Управление</th>
+            <th scope="col" class="col-5">{{__('Title')}}</th>
+            <th scope="col" class="col-3">{{__('Artist')}}</th>
+            <th scope="col" class="col-3 text-center" colspan="3">{{__('Manage')}}</th>
         </tr>
         </thead>
         <tbody>

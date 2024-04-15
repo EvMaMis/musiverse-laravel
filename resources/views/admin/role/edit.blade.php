@@ -10,23 +10,23 @@
         @csrf
         @method('PATCH')
         <div class="col-4">
-            <label for="name" class="form-check-label mb-2">Название роли</label>
-            <input id="name" type="text" placeholder="Роль..." class="form-control mb-3" name="name"
+            <label for="name" class="form-check-label mb-2">{{__('Role title')}}</label>
+            <input id="name" type="text" placeholder="{{__('Title')}}" class="form-control mb-3" name="name"
                    value="{{$role->name}}">
             @error('name')
             <div class="text-danger">{{$message}}</div>
             @enderror
         </div>
         <div class="col-4">
-            <label for="permissions">Разрешения</label>
+            <label for="permissions">{{__('Permissions')}}</label>
             <select id="permissions" name="permissions[]" multiple="multiple" class="js-example-basic-multiple form-control">
                 @foreach($permissions as $permission)
-                    <option {{in_array($permission->id, $role->permissions()->pluck('id')->all()) ? 'selected' : ''}} value="{{$permission->name}}" title="{{$permission->description}}">{{$permission->name}}</option>
+                    <option {{in_array($permission->id, $role->permissions()->pluck('id')->all()) ? 'selected' : ''}} value="{{$permission->name}}" title="{{__($permission->description)}}">{{__($permission->name)}}</option>
                 @endforeach
             </select>
         </div>
         <input type="hidden" name="id" value="{{$role->id}}">
-        <input type="submit" class="btn btn-success" value="Обновить роль">
+        <input type="submit" class="btn btn-success" value="{{__('Update role')}}">
     </form>
 @endsection
 
