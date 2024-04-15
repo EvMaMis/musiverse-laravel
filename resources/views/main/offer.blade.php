@@ -16,16 +16,16 @@
 @section('navbar')
     <ul class="d-flex">
         <li class="nav-item">
-            <a class="nav-link" href="#">Главная</a>
+            <a class="nav-link" href="#">Main</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#advantages">Преимущества</a>
+            <a class="nav-link" href="#advantages">Advantages</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#try">Попробовать</a>
+            <a class="nav-link" href="#try">Try Now</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#contacts">Контакты</a>
+            <a class="nav-link" href="#contacts">Contacts</a>
         </li>
     </ul>
 @endsection
@@ -38,14 +38,14 @@
                     <img class="img-fluid" src="{{asset('images/img1.png')}}" alt="playlists image">
                 </div>
                 <div class="offer col-md-4 col-12">
-                    <div class="h1 text-center">Откройте для себя новый мир музыки</div>
+                    <div class="h1 text-center">Discover a whole new world of music</div>
                     <div class="offer-hint" style="font-size: 1rem;">
-                        Миллионы музыкальных композиций уже ждут вас. Вперед, в мир новых идей!
+                        A lot of musical masterpieces await you. Join us on an adventure to the land of new discoveries!
                     </div>
                     <div class="btn-try p-3 d-none d-md-block text-center w-100S">
-                        Попробовать сейчас
+                        Want to try? Register now
                     </div>
-                    <div class="btn-try p-3 d-md-none">Попробовать</div>
+                    <div class="btn-try p-3 d-md-none">Try Now</div>
                 </div>
 
             </div>
@@ -58,25 +58,25 @@
 @section('main')
     <div class="advantages" id="advantages">
         <div class="container">
-            <h1>Наши преимущества</h1>
+            <h1>Our advantages</h1>
             <div class="photos d-flex row flex-md-row row-cols-md-2 row-cols-lg-3 flex-column justify-content-center align-items-center align-items-md-baseline align-items-lg-center mt-5">
                 <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img1.png')}}" alt="playlists">
                     <div class="photo-description">
-                        Добавляйте свои плейлисты
-                        и знакомьтесь с новыми
+                        Create your own playlists
+                        and discover new one
                     </div>
                 </div>
                 <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img2.png')}}" alt="Anywhere and Anytime">
                     <div class="photo-description">
-                        Слушайте любимую музыку на любой платформе
+                        Listen to your favorites on any platform
                     </div>
                 </div>
                 <div class="photo col mb-5 mb-lg-0">
                     <img src="{{asset('images/gallery_img3.png')}}" alt="No ads" style="scale: 1.5;">
                     <div class="photo-description">
-                        Никогда не отвлекайтесь от прослушивания Никакой рекламы
+                        Never get distracted by any ads. It's completely free
                     </div>
                 </div>
             </div>
@@ -84,11 +84,11 @@
     </div>
     <div class="try" id="try">
         <div class="container">
-            <div class="text-center"><h1>Готовы присоединиться?</h1></div>
+            <div class="text-center"><h1>Ready to hop in?</h1></div>
             <div class="btns">
                 <div class="btn-start">
-                    <a href='{{route('home')}}'>
-                    Создайте аккаунт
+                    <a href='{{route('register')}}'>
+                    Create account
                     </a>
                 </div>
             </div>
@@ -98,15 +98,15 @@
 @section('footer')
     <div class="contacts" id="contacts">
         <div class="container">
-            <h1>Остались вопросы?</h1>
+            <h1>Have questions? Need assistance?</h1>
             <div class="form">
-                <h2>Свяжитесь с нами прямо сейчас!</h2>
+                <h2>Let's keep in touch</h2>
                 <form action="process">
-                    <input type="text" id="name" name="name" placeholder="Ваше имя">
+                    <input type="text" id="name" name="name" placeholder="Your name">
                     <input type="email" id="email" name="email" placeholder="Email">
-                    <textarea name="message" placeholder="Сообщение..." rows="7"></textarea>
+                    <textarea name="message" placeholder="Message..." rows="7"></textarea>
                     <div class="btn-submit">
-                        <input type="submit" id="submit" value="Подтвердить">
+                        <input type="submit" id="submit" value="Submit">
                     </div>
                 </form>
             </div>

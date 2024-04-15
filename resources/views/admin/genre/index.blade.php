@@ -1,27 +1,27 @@
 @extends('layouts.admin')
 
 @section('main')
-    <div class="h1">Жанры музыки</div>
+    <div class="h1">{{__('Music genres')}}</div>
     @canany(['Add', 'Suggest'])
         <a href="{{route('admin.genre.create')}}">
-            <div class="btn btn-success">Добавить жанр</div>
+            <div class="btn btn-success">{{__('Add genre')}}</div>
         </a>
     @endcanany
     <table class="table">
         <thead>
         <tr>
             <th scope="col" class="col-1">#</th>
-            <th scope="col" class="col-6">Название жанра</th>
-            <th scope="col" class="col-2">Количество произведений</th>
-            <th scope="col" class="col-3 text-center" colspan="3">Управление</th>
+            <th scope="col" class="col-6 ">{{__('Genre')}}</th>
+            <th scope="col" class="col-2 text-center">{{__('Number of tracks')}}</th>
+            <th scope="col" class="col-3 text-center" colspan="3">{{__('Manage')}}</th>
         </tr>
         </thead>
         <tbody>
         @foreach($genres as $key=>$genre)
             <tr class="align-middle">
                 <th scope="row">{{$key+1}}</th>
-                <td>{{$genre->title}}</td>
-                <td>{{$genre->songs_count}}</td>
+                <td class="">{{$genre->title}}</td>
+                <td class="text-center">{{$genre->songs_count}}</td>
                 <td class="col-1 text-center"><a href="{{route('admin.genre.show', $genre)}}"><i
                             class="text-primary fas fa-eye"></i></a></td>
                 @can('Edit')
