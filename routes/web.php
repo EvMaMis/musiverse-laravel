@@ -3,13 +3,13 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\PlaylistController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\Personal\PersonalController;
-use App\Http\Controllers\Personal\PlaylistController;
 use App\Http\Controllers\Personal\RecommendationController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +20,6 @@ Route::get('/top', [MainController::class, 'top'])->name('main.top');
 
 Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
     Route::get('/', [PersonalController::class, 'index'])->name('personal.index');
-    Route::group(['prefix' => 'playlists'], function () {
-        Route::get('/', [PlaylistController::class, 'index'])->name('personal.playlist.index');
-    });
     Route::group(['prefix' => 'recommendations'], function () {
         Route::get('/', [RecommendationController::class, 'index'])->name('personal.recommendation.index');
     });
@@ -46,6 +43,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
             Route::get('songs/create', [SongController::class, 'create'])->name('admin.song.create');
             Route::post('songs/', [SongController::class, 'store'])->name('admin.song.store');
+
+            Route::get('playlists/create', [PlaylistController::class, 'create'])->name('admin.playlist.create');
+            Route::post('playlists/', [PlaylistController::class, 'store'])->name('admin.playlist.store');
         });
 
         // Basic routes for showing elements
@@ -69,6 +69,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::get('/{song}', [SongController::class, 'show'])->name('admin.song.show');
         });
 
+        Route::group(['prefix' => 'playlists'], function () {
+            Route::get('/', [PlaylistController::class, 'index'])->name('admin.playlist.index');
+            Route::get('/{song}', [PlaylistController::class, 'show'])->name('admin.playlist.show');
+        });
+
         // Checks if user can edit anything
         Route::group(['middleware' => 'permission:Edit'], function() {
             Route::get('genres/{genre}/edit', [GenreController::class, 'edit'])->name('admin.genre.edit');
@@ -82,6 +87,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
             Route::get('songs/{song}/edit', [SongController::class, 'edit'])->name('admin.song.edit');
             Route::patch('songs/{song}', [SongController::class, 'update'])->name('admin.song.update');
+
+            Route::get('playlist/{playlist}/edit', [PlaylistController::class, 'edit'])->name('admin.playlist.edit');
+            Route::patch('playlist/{playlist}', [PlaylistController::class, 'update'])->name('admin.playlist.update');
         });
 
         // Checks if user can delete anything
@@ -90,6 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::delete('tags/{tag}', [TagController::class, 'destroy'])->name('admin.tag.destroy');
             Route::delete('artists/{artist}', [ArtistController::class, 'destroy'])->name('admin.artist.destroy');
             Route::delete('songs/{song}', [SongController::class, 'destroy'])->name('admin.song.destroy');
+            Route::delete('playlist/{playlist}', [PlaylistController::class, 'destroy'])->name('admin.playlist.destroy');
         });
 
     });

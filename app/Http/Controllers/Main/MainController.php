@@ -11,7 +11,7 @@ class MainController extends Controller
     public function index() {
         $songs = Song::all();
         if(auth()->user())
-            return view('main.songs', compact('songs'));
+            return view('app', compact('songs'));
         return view('main.offer');
     }
 

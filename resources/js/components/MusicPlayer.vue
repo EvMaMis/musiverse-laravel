@@ -1,86 +1,121 @@
 <template>
     <div class="music-player">
-        <div class="player-controls">
-            <button @click="togglePlay">
-                <i class="fas fa-play" v-if="!isPlaying"></i>
-                <i class="fas fa-pause" v-if="isPlaying"></i>
-            </button>
-            <input v-model="currentTime" type="range" min="0" :max="duration">
-            <span>{{ formattedCurrentTime }}</span>
-            <span>/ {{ formattedDuration }}</span>
+        <div class="current-song">Currently playing</div>
+        <div>
             <button @click="previousTrack">
-                <i class="fas fa-backward"></i>
+                <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button @click="togglePlay">
+                <i v-if="isPlaying" class="fa-solid fa-pause"></i>
+                <i v-else class="fa-solid fa-play"></i>
             </button>
             <button @click="nextTrack">
-                <i class="fas fa-forward"></i>
+                <i class="fa-solid fa-forward-step"></i>
             </button>
         </div>
-        <audio :src="currentTrack.src" ref="audioPlayer"></audio>
+        <div>
+            <span>{{ formattedCurrentTime }}</span> / <span>{{ formattedDuration }}</span>
+        </div>
+        <audio ref="audioPlayer" :src="currentTrack.src"></audio>
     </div>
 </template>
 
 <script setup>
-import { FontAwesomeIcon } from '@fortawesome/fontawesome-free';
-import { faPlay, faPause, faBackward, faForward } from '@fortawesome/free-solid-svg-icons';
+import { ref, reactive, computed, onMounted } from 'vue';
+import axios from 'axios';
 
-export default {
-    components: {
-        FontAwesomeIcon,
-    },
-    data() {
-        return {
-            isPlaying: false,
-            currentTime: 0,
-            duration: 0,
-            currentTrack: {
-                src: '',
-                title: '',
-            },
-            playlist: [],
-        };
-    },
-    computed: {
-        formattedCurrentTime() {
-            const minutes = Math.floor(this.currentTime / 60);
-            const seconds = Math.floor(this.currentTime % 60).toString().padStart(2, '0');
-            return `${minutes}:${seconds}`;
-        },
-        formattedDuration() {
-            const minutes = Math.floor(this.duration / 60);
-            const seconds = Math.floor(this.duration % 60).toString().padStart(2, '0');
-            return `${minutes}:${seconds}`;
-        },
-    },
-    methods: {
-        togglePlay() {
-            this.isPlaying = !this.isPlaying;
-            if (this.isPlaying) {
-                this.$refs.audioPlayer.play();
-            } else {
-                this.$refs.audioPlayer.pause();
-            }
-        },
-        updateProgress() {
-            this.currentTime = this.$refs.audioPlayer.currentTime;
-        },
-        previousTrack() {
-            // Implement logic to go to previous track in playlist
-        },
-        nextTrack() {
-            // Implement logic to go to next track in playlist
-        },
-    },
-    mounted() {
-        this.$refs.audioPlayer.addEventListener('timeupdate', this.updateProgress);
-        this.$refs.audioPlayer.addEventListener('loadedmetadata', () => {
-            this.duration = this.$refs.audioPlayer.duration;
-        });
-    },
+const isPlaying = ref(false);
+const currentTime = ref(0);
+const duration = ref(0);
+const currentTrackIndex = ref(0);
+
+const currentTrack = reactive({
+    src: '',
+    title: '',
+});
+
+const playlist = ref([]);
+
+const formattedCurrentTime = computed(() => {
+    const minutes = Math.floor(currentTime.value / 60);
+    const seconds = Math.floor(currentTime.value % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+});
+
+const formattedDuration = computed(() => {
+    const minutes = Math.floor(duration.value / 60);
+    const seconds = Math.floor(duration.value % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+});
+
+const audioPlayer = ref(null);
+
+const loadTrack = (index) => {
+    if (index >= 0 && index < playlist.value.length) {
+        currentTrackIndex.value = index;
+        currentTrack.src = playlist.value[index].src;
+        currentTrack.title = playlist.value[index].title;
+        if (isPlaying.value) {
+            audioPlayer.value.play();
+        }
+    }
 };
+
+const togglePlay = () => {
+    isPlaying.value = !isPlaying.value;
+    if (isPlaying.value) {
+        audioPlayer.value.play();
+    } else {
+        audioPlayer.value.pause();
+    }
+};
+
+const updateProgress = () => {
+    currentTime.value = audioPlayer.value.currentTime;
+};
+
+const previousTrack = () => {
+    if (currentTrackIndex.value > 0) {
+        loadTrack(currentTrackIndex.value - 1);
+    }
+};
+
+const nextTrack = () => {
+    if (currentTrackIndex.value < playlist.value.length - 1) {
+        loadTrack(currentTrackIndex.value + 1);
+    }
+};
+
+onMounted(async () => {
+    audioPlayer.value.addEventListener('timeupdate', updateProgress);
+    audioPlayer.value.addEventListener('loadedmetadata', () => {
+        duration.value = audioPlayer.value.duration;
+    });
+
+    // Fetch playlist data from backend
+    const response = await axios.get('/api/user-playlist');
+    playlist.value = response.data;
+
+    // Load the first track
+    if (playlist.value.length > 0) {
+        loadTrack(0);
+    }
+});
 </script>
 
 <style scoped>
+#app {
+    text-align: center;
+    margin-top: 50px;
+}
+.current-song {
+    color: #C5C6C7;
+}
 .music-player {
-    /* Add your styling here */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>

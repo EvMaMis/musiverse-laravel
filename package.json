@@ -18,6 +18,8 @@
         "@vitejs/plugin-vue": "^5.0.4",
         "bootstrap": "^5.3.3",
         "sass": "^1.72.0",
-        "vue": "^3.4.27"
+        "vue": "^3.4.27",
+        "vue-carousel": "^0.18.0",
+        "vue-router": "^4.3.2"
     }
 }

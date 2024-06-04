@@ -1,11 +1,7 @@
 @extends('layouts.app')
+@section('head_meta')
+    @vite('resources/js/app.js')
+@endsection
 @section('content')
-    <div id="app">
-    <div class="row" style="margin: 0;">
-        @yield('sidebar')
-        <div class="col" style="padding: 0;">
-            @yield('main')
-        </div>
-    </div>
-    </div>
+    <div id="vue_main"></div>
 @endsection

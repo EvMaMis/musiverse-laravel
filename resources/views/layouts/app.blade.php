@@ -25,7 +25,7 @@
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg" >
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{asset('images/logo.svg')}}" alt="Musi Verse" style="height:50px; width: 50%;">
+                <img src="{{asset('images/logo.svg')}}" alt="Musi Verse" style="height:35px; width: 50%; margin-right: -4px; margin-top: -4px;">
                 MusiVerse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
