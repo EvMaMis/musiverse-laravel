@@ -10,7 +10,7 @@ class PlaylistController extends Controller
 {
     public function index()
     {
-        $playlists = Playlist::all();
+        $playlists = Playlist::with(['songs.artist'])->get();
         return response()->json($playlists);
     }
 }

@@ -1,20 +1,8 @@
 <script setup>
 import {ref, onMounted} from 'vue';
-import SongCard from "@/components/SongCard.vue";
+import PlaylistCard from "@/components/PlaylistCard.vue";
 
-const songs = ref([]);
 const playlists = ref([]);
-const image = "../../../public/storage/";
-
-const fetchSongs = async () => {
-    try {
-        const response = await axios.get('api/songs');
-        songs.value = response.data;
-        console.log(songs);
-    } catch (error) {
-        console.error('Error fetching songs:', error);
-    }
-};
 
 const fetchPlaylists = async () => {
     try {
@@ -27,17 +15,16 @@ const fetchPlaylists = async () => {
 }
 
 onMounted(() => {
-    fetchSongs();
+    fetchPlaylists();
 });
 </script>
 
 <template>
     <div class="container">
-        <div class="header">Songs</div>
+        <div class="header">Playlists</div>
         <div class="card-row">
-            <song-card v-for="song in songs" :key="song.id" :track="song"></song-card>
+            <playlist-card v-for="playlist in playlists" :key="playlist.id" :track="playlist"></playlist-card>
         </div>
-
     </div>
 </template>
 

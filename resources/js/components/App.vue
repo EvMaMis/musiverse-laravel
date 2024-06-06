@@ -21,6 +21,11 @@
 import Navbar from "@/components/Navbar.vue";
 import MusicPlayer from "@/components/MusicPlayer.vue";
 import SongsQueue from "@/components/SongsQueue.vue";
+import { provide } from 'vue';
+import { musicPlayerState } from '../musicPlayerState';
+
+provide('musicPlayerState', musicPlayerState);
+
 </script>
 
 <style scoped>

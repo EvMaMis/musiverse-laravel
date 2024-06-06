@@ -1,9 +1,10 @@
 <script setup>
+import SongsLine from "@/components/SongsLine.vue";
 
 </script>
 
 <template>
-<h1>This is songs page</h1>
+    <songs-line></songs-line>
 </template>
 
 <style scoped>

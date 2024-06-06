@@ -1,9 +1,10 @@
 <script setup>
 
+import PlaylistsLine from "@/components/PlaylistsLine.vue";
 </script>
 
 <template>
-<h1>This is playlists page</h1>
+    <playlists-line></playlists-line>
 </template>
 
 <style scoped>
