@@ -19,7 +19,11 @@ class GenreFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->unique()->domainWord(),
+            'title' => $this->faker->unique()->randomElement(['Synthwave', 'Grime', 'Dream Pop', 'Krautrock', 'Ska',
+                'Death Metal', 'Chillwave', 'Bossa Nova', 'Reggaeton', 'Trip Hop', 'Gospel', 'Hardcore Punk',
+                'J-Pop', 'New Wave', 'Blues Rock', 'Ambient', 'Dubstep', 'Indie Folk', 'Classical Crossover', 'Funk',
+                'Progressive House', 'Shoegaze', 'Country Blues', 'Techno', 'Cumbia', 'Garage Rock', 'Opera',
+                'Lo-fi Hip Hop', 'Power Pop', 'Celtic Punk']),
         ];
     }
 }

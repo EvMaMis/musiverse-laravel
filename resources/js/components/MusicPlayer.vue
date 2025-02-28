@@ -1,7 +1,12 @@
 <template>
-    <div>
+    <div class="music-player">
         <div v-if="musicPlayerState.currentTrack">
             <audio ref="audioPlayer" :src="'storage/' + musicPlayerState.currentTrack.file" controls autoplay @ended="handleTrackEnd"></audio>
+            <div class="controls">
+                <button @click="playPreviousTrack">⏮️</button>
+                <button @click="togglePlayPause">⏯️</button>
+                <button @click="playNextTrack">⏭️</button>
+            </div>
         </div>
         <div v-else>
             <p class="current-song">No track is currently playing.</p>
@@ -16,53 +21,54 @@ const musicPlayerState = inject('musicPlayerState');
 const audioPlayer = ref(null);
 
 const handleTrackEnd = () => {
+    playNextTrack();
+};
+
+const playNextTrack = () => {
     musicPlayerState.playNextTrack();
+};
+
+const playPreviousTrack = () => {
+    musicPlayerState.playPreviousTrack();
+};
+
+const togglePlayPause = () => {
+    if (audioPlayer.value.paused) {
+        audioPlayer.value.play();
+    } else {
+        audioPlayer.value.pause();
+    }
 };
 
 watch(() => musicPlayerState.currentTrack, (newTrack) => {
     if (newTrack && audioPlayer.value) {
         audioPlayer.value.src  = 'storage/' + newTrack.file;
         audioPlayer.value.play();
-    } else {
     }
 });
 </script>
 
 <style scoped>
-#app {
-    text-align: center;
-    margin-top: 50px;
-}
-.current-song {
-    color: #C5C6C7;
-}
 .music-player {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-button {
-    background-color: transparent;
-    color: #C5C6C7;
-    width: 30px;
-    height: 30px;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 .controls {
-    display: flex;
+    margin-top: 10px;
+}
+button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #444;
+    color: white;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #666;
 }
 </style>
