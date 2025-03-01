@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="">
         <div class="header">Playlists</div>
         <div class="card-row">
             <playlist-card v-for="playlist in playlists" :key="playlist.id" :track="playlist"></playlist-card>

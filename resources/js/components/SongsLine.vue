@@ -32,7 +32,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="">
         <div class="header">Songs</div>
         <div class="card-row">
             <song-card v-for="song in songs" :key="song.id" :track="song"></song-card>
@@ -45,7 +45,8 @@ onMounted(() => {
 .card-row {
     width: 100%;
     margin-top: 5px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
 }
 
