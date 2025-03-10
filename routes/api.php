@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'index']);
 Route::get('/playlists', [\App\Http\Controllers\Api\PlaylistController::class, 'index']);
+Route::get('/songs/{song}', [\App\Http\Controllers\Api\SongController::class, 'single']);

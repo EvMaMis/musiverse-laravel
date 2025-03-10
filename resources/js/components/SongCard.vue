@@ -1,4 +1,5 @@
 <template>
+    <RouterLink :to="{ name: 'SingleSong', params: { id: track.id } }" class="navbar-brand">
     <div class="song-card">
         <img :src="'storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
         <div class="song-info">
@@ -14,6 +15,7 @@
             </div>
         </div>
     </div>
+    </RouterLink>
 </template>
 
 <script setup>

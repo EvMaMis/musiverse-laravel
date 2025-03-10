@@ -26,6 +26,11 @@ class SongController extends Controller
         return response()->json($songs);
     }
 
+    public function single(Song $song) {
+        dd($song);
+        return response()->json($song);
+    }
+
     public function create()
     {
         $tags = Tag::orderBy('title', 'ASC')->get();

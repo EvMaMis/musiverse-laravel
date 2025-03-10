@@ -50,6 +50,7 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
+    min-height: 94vh;
 }
 
 .sidebar-content {
