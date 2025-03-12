@@ -8,11 +8,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\Personal\PersonalController;
-use App\Http\Controllers\Personal\RecommendationController;
-use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +18,6 @@ Route::get('/top', [MainController::class, 'top'])->name('main.top');
 
 Route::group(['prefix' => 'personal', 'middleware' => ['auth']], function () {
     Route::get('/', [PersonalController::class, 'index'])->name('personal.index');
-    Route::group(['prefix' => 'recommendations'], function () {
-        Route::get('/', [RecommendationController::class, 'index'])->name('personal.recommendation.index');
-    });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -130,6 +124,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
     Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'getLikedSongs']);
+    Route::get('/playlists', [\App\Http\Controllers\Api\PlaylistController::class, 'index']);
+    Route::get('/recommendations/songs', [\App\Http\Controllers\Api\RecommendationController::class, 'getSongsRecommendations']);
     Route::post('/songs/toggle-like', [\App\Http\Controllers\Api\SongController::class, 'toggleLiked']);
 });
 

@@ -11,6 +11,9 @@
                 <div class="row">
                     <music-player></music-player>
                 </div>
+                <div class="row">
+                    <recommendation-block></recommendation-block>
+                </div>
             </div>
 
         </div>
@@ -26,6 +29,7 @@ import MusicPlayer from "@/components/MusicPlayer.vue";
 import SongsQueue from "@/components/SongsQueue.vue";
 import {provide} from 'vue';
 import {musicPlayerState} from '../musicPlayerState';
+import RecommendationBlock from "@/components/RecommendationBlock.vue";
 
 provide('musicPlayerState', musicPlayerState);
 
@@ -55,7 +59,6 @@ body {
 
 .sidebar-content {
     position: fixed;
-    top:25%;
     left:0;
     z-index: 2;
 }
@@ -84,5 +87,10 @@ body {
 
 .main-block {
     display: flex;
+}
+
+.row {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 </style>

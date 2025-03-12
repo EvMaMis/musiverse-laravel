@@ -14,7 +14,7 @@
                     <i class="fas fa-plus"></i>
                 </button>
                 <button @click="toggleLike">
-                    <i :class="props.track.is_liked ? 'fas fa-heart' : 'fa-regular fa-heart'"></i>
+                    <i :class="track.is_liked ? 'fas fa-heart' : 'fa-regular fa-heart'"></i>
                 </button>
             </div>
         </div>
@@ -75,12 +75,11 @@ const addToQueue = () => {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
-    margin: 10px 0;
     flex-direction: column;
     height: fit-content;
     width: 200px;
     background-color: rgba(33, 37, 46);
-    margin-right: 30px;
+    margin: 10px 30px 10px 0;
 }
 
 .song-card img {
