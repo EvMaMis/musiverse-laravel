@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\Personal\PersonalController;
 use App\Http\Controllers\Personal\RecommendationController;
@@ -125,6 +126,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             Route::delete('/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
         });
     });
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
+    Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'getLikedSongs']);
+    Route::post('/songs/toggle-like', [\App\Http\Controllers\Api\SongController::class, 'toggleLiked']);
 });
 
 Auth::routes(['verify' => true]);

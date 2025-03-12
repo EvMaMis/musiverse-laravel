@@ -1,7 +1,8 @@
 <template>
-    <RouterLink :to="{ name: 'SingleSong', params: { id: track.id } }" class="navbar-brand">
     <div class="song-card">
+        <RouterLink :to="{ name: 'SingleSong', params: { id: track.id } }" class="navbar-brand">
         <img :src="'storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
+        </RouterLink>
         <div class="song-info">
             <div class="title-container"><div class="title">{{ track.title }}</div></div>
             <p>{{ track.artist.name }}</p>
@@ -12,10 +13,12 @@
                 <button @click="addToQueue">
                     <i class="fas fa-plus"></i>
                 </button>
+                <button @click="toggleLike">
+                    <i :class="props.track.is_liked ? 'fas fa-heart' : 'fa-regular fa-heart'"></i>
+                </button>
             </div>
         </div>
     </div>
-    </RouterLink>
 </template>
 
 <script setup>
@@ -31,6 +34,7 @@ const props = defineProps({
             title: '',
             artist: '',
             cover: '',
+            is_liked: false
         }),
     },
 });
@@ -48,6 +52,16 @@ const togglePlay = () => {
         audioPlayer.value.pause();
     }
 };
+
+const toggleLike = async() => {
+    try {
+        const response = await axios.post("/api/songs/toggle-like", { songId: props.track.id });
+        console.log(response);
+        props.track.is_liked = response.data.liked;
+    } catch (error) {
+        console.error("Error toggling like", error);
+    }
+}
 
 const addToQueue = () => {
     musicPlayerState.addToQueue(props.track);

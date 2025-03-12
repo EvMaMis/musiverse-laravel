@@ -10,6 +10,8 @@ use App\Models\Genre;
 use App\Models\Song;
 use App\Models\Tag;
 use App\Service\SongService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
@@ -29,6 +31,31 @@ class SongController extends Controller
     public function single(Song $song) {
         dd($song);
         return response()->json($song);
+    }
+
+    public function getLikedSongs() {
+        $user = auth()->user();
+        $songs = Song::with('artist')->get()->map(function ($song) use ($user) {
+            $song->is_liked = $user ? $user->likedSongs()->where('song_id', $song->id)->exists() : false;
+            return $song;
+        });
+        return response()->json($songs);
+    }
+
+    public function toggleLiked(Request $request) {
+        $user = auth()->user();
+        $songId = $request->songId;
+        if(!$songId || !$user) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        if($user->likedSongs()->where('song_id', $songId)->exists()) {
+            $user->likedSongs()->detach($songId);
+            return response()->json(['status' => 'success', 'liked' => false]);
+        } else {
+            $user->likedSongs()->attach($songId);
+            return response()->json(['status' => 'success', 'liked' => true]);
+        }
     }
 
     public function create()
