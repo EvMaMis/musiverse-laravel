@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
+use App\Models\Genre;
 use App\Models\Song;
 
 class RecommendationController extends Controller
@@ -26,10 +28,12 @@ class RecommendationController extends Controller
                 $query->whereIn('tags.id', $likedTags);
             }])
             ->orderBy('tags_count', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
-
-        return response()->json($songQuery);
+        $recommendationsByArtists = Song::with('artist')->inRandomOrder()->whereIn('artist_id', $likedArtists)->limit(5)->get();
+        $recommendationsByGenre = Song::with('artist')->inRandomOrder()->whereIn('genre_id', $likedGenres)->limit(5)->get();
+        $result = ['artists' => $recommendationsByArtists, 'genres' => $recommendationsByGenre, 'tags' => $songQuery];
+        return response()->json($result);
 
     }
 }
