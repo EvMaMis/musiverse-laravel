@@ -1,46 +1,33 @@
 <template>
-    <div style="color:red">{{recommendations.length}}</div>
-    <div class="recommendations-block" v-if="recommendations">
-        <h2>Recommendations</h2>
+    <div class="recommendations-block" v-if="recommendationsFetched">
         <div class="recommendation-list">
-            <h3>Sound similar to what you listened:</h3>
-            <div class="recommendation-list-item" v-for="rec in recommendations.tags">
-                <div class="text">{{rec.title}} - {{rec.artist.name}}</div>
-            </div>
-            <h3>Same artists - new tracks:</h3>
-            <div class="recommendation-list-item" v-for="rec in recommendations.artists">
-                <div class="text">{{rec.title}} - {{rec.artist.name}}</div>
-            </div>
-            <h3>Something new from same genres:</h3>
-            <div class="recommendation-list-item" v-for="rec in recommendations.genres">
-                <div class="text">{{rec.title}} - {{rec.artist.name}}</div>
-            </div>
+            <songs-line key="tags" :data="{header: 'Sound similar to what you listened:', songs: recommendations.tags}"></songs-line>
         </div>
     </div>
 
 </template>
 
 <script setup>
-import {ref, reactive, onMounted, watch, computed} from "vue";
-import { useRoute } from "vue-router";
+import {computed, ref, onMounted} from "vue";
+import SongsLine from "@/components/SongsLine.vue";
 
-const recommendations = ref([]);
-const route = useRoute();
+const recommendations = ref({});
+const recommendationsFetched = computed(() => Object.keys(recommendations.value).length > 0);
 
-watch(route, () => {
+onMounted(() => {
     fetchRecSongs();
 });
+
 
 const fetchRecSongs = async() =>{
     try{
         const response = await axios.get('api/recommendations/songs');
         recommendations.value = response.data;
+        console.log(recommendations.value);
     } catch(e) {
         console.log(e);
     }
 }
-
-
 
 </script>
 

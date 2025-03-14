@@ -8,11 +8,15 @@ export const musicPlayerState = reactive({
         this.currentTrack = track;
     },
 
+    clearCurrentSong() {
+        this.currentTrack = null;
+    },
+
     addToQueue(track) {
         this.queue.push(track);
-        if (!this.currentTrack) {
-            this.playNextTrack();
-        }
+        // if (!this.currentTrack) {
+        //     this.playNextTrack();
+        // }
     },
 
     playNextTrack() {

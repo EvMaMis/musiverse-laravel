@@ -4,7 +4,7 @@ import SongsLine from "@/components/SongsLine.vue";
 </script>
 
 <template>
-    <songs-line></songs-line>
+    <songs-line :data="{header: 'Songs'}"></songs-line>
 </template>
 
 <style scoped>

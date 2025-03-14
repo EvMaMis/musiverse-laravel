@@ -11,9 +11,6 @@
                 <div class="row">
                     <music-player></music-player>
                 </div>
-                <div class="row">
-                    <recommendation-block></recommendation-block>
-                </div>
             </div>
 
         </div>
@@ -29,7 +26,6 @@ import MusicPlayer from "@/components/MusicPlayer.vue";
 import SongsQueue from "@/components/SongsQueue.vue";
 import {provide} from 'vue';
 import {musicPlayerState} from '../musicPlayerState';
-import RecommendationBlock from "@/components/RecommendationBlock.vue";
 
 provide('musicPlayerState', musicPlayerState);
 

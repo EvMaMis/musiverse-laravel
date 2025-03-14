@@ -1,7 +1,7 @@
 <template>
-    <div class="queue-display" v-if="musicPlayerState.currentTrack">
+    <div class="queue-display">
         <h2>Queue</h2>
-            <div style="color: #45A29E;">{{musicPlayerState.currentTrack.title}} - {{musicPlayerState.currentTrack.artist.name}}</div>
+            <div v-if="musicPlayerState.currentTrack" style="color: #45A29E;">{{musicPlayerState.currentTrack.title}} - {{musicPlayerState.currentTrack.artist.name}}</div>
             <div v-for="(track, index) in queue" :key="index">
                 {{ track.title }} - {{ track.artist.name }}
             </div>

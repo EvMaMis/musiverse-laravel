@@ -1,7 +1,7 @@
 <template>
     <div class="song-card">
         <RouterLink :to="{ name: 'SingleSong', params: { id: track.id } }" class="navbar-brand">
-        <img :src="'storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
+            <img :src="'storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
         </RouterLink>
         <div class="song-info">
             <div class="title-container"><div class="title">{{ track.title }}</div></div>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { computed, inject, watch } from 'vue';
 const musicPlayerState = inject('musicPlayerState');
 
 const props = defineProps({
@@ -41,22 +41,19 @@ const props = defineProps({
 
 const emit = defineEmits(['add-to-queue']);
 
-const isPlaying = ref(false);
-const audioPlayer = ref(new Audio('storage/' + props.track.file));
+const isPlaying = computed(() => musicPlayerState.currentTrack === props.track);
 
 const togglePlay = () => {
-    isPlaying.value = !isPlaying.value;
-    if (isPlaying.value) {
-        audioPlayer.value.play();
+    if(!isPlaying.value) {
+        musicPlayerState.playTrack(props.track);
     } else {
-        audioPlayer.value.pause();
+        musicPlayerState.stopTrack();
     }
 };
 
 const toggleLike = async() => {
     try {
         const response = await axios.post("/api/songs/toggle-like", { songId: props.track.id });
-        console.log(response);
         props.track.is_liked = response.data.liked;
     } catch (error) {
         console.error("Error toggling like", error);
