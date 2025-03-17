@@ -22,6 +22,7 @@ const fetchSongs = async () => {
         } else {
             songs.value = props.data.songs;
         }
+        console.log(songs);
     } catch (error) {
         console.error('Error fetching songs:', error);
     }
@@ -51,7 +52,7 @@ onMounted(() => {
 }
 
 .header {
-    font-size: 64px;
+    font-size: 48px;
     color: #C5C6C7;
 }
 

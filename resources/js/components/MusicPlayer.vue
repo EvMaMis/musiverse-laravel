@@ -1,15 +1,12 @@
 <template>
     <div class="music-player">
-        <div v-if="musicPlayerState.currentTrack">
-            <audio ref="audioPlayer" :src="'storage/' + musicPlayerState.currentTrack.file" controls autoplay @ended="handleTrackEnd"></audio>
+        <div>
+            <audio v-if="musicPlayerState.currentTrack" ref="audioPlayer" :src="'storage/' + musicPlayerState.currentTrack.file" controls autoplay @ended="handleTrackEnd"></audio>
             <div class="controls">
                 <button @click="playPreviousTrack">⏮️</button>
                 <button @click="togglePlayPause">⏯️</button>
                 <button @click="playNextTrack">⏭️</button>
             </div>
-        </div>
-        <div v-else>
-            <p class="current-song">No track is currently playing.</p>
         </div>
     </div>
 </template>

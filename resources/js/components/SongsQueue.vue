@@ -18,8 +18,6 @@ const queue = musicPlayerState.queue;
 </script>
 
 <style scoped>
-/* Your styles here */
-.queue-display {
-    /* Add your styles to style the queue display */
-}
+
+
 </style>

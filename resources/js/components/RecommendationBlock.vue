@@ -2,6 +2,8 @@
     <div class="recommendations-block" v-if="recommendationsFetched">
         <div class="recommendation-list">
             <songs-line key="tags" :data="{header: 'Sound similar to what you listened:', songs: recommendations.tags}"></songs-line>
+            <songs-line key="tags" :data="{header: 'Something new from same artists:', songs: recommendations.artists}"></songs-line>
+            <songs-line key="tags" :data="{header: 'New songs from your favorite genres:', songs: recommendations.genres}"></songs-line>
         </div>
     </div>
 

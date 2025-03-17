@@ -17,6 +17,9 @@
                     <i :class="track.is_liked ? 'fas fa-heart' : 'fa-regular fa-heart'"></i>
                 </button>
             </div>
+            <div class="liked-at" v-if="track.liked_at">
+                {{track.liked_at}}
+            </div>
         </div>
     </div>
 </template>
@@ -111,9 +114,11 @@ const addToQueue = () => {
     width: 130px;
     text-overflow: ellipsis;
 }
+
 .title-container:hover .title {
     animation: scroll-title 10s linear infinite;
 }
+
 .title {
     display: inline-block;
     color: #C5C6C7;
@@ -163,5 +168,12 @@ button:hover {
 
 button i {
 
+}
+
+.liked-at {
+    color: #C5C6C7;
+    font-size: 14px;
+    margin-top: 7px;
+    text-align: center;
 }
 </style>
