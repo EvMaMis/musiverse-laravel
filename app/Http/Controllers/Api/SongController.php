@@ -58,44 +58,17 @@ class SongController extends Controller
         }
     }
 
-    public function create()
-    {
-        $tags = Tag::orderBy('title', 'ASC')->get();
-        $genres = Genre::orderBy('title', 'ASC')->get();
-        $artists = Artist::orderBy('name', 'ASC')->get();
-        return view('admin.song.create', compact('tags', 'genres', 'artists'));
-    }
-
-    public function store(StoreRequest $request)
-    {
-        $data = $request->validated();
-        $this->service->store($data);
-        return redirect()->route('admin.song.index');
-    }
-
-    public function show(Song $song) {
-        return view('admin.song.show', compact('song'));
-    }
-
-    public function edit(Song $song) {
-        $tags = Tag::orderBy('title', 'ASC')->get();
-        $genres = Genre::orderBy('title', 'ASC')->get();
-        $artists = Artist::orderBy('name', 'ASC')->get();
-        return view('admin.song.edit', compact('song', 'tags', 'genres', 'artists'));
-    }
-
-    public function update(UpdateRequest $request, Song $song) {
-        $data = $request->validated();
-        $this->service->update($song, $data);
-
-        return redirect()->route('admin.song.index');
-    }
-
-    public function destroy(Song $song) {
-        Storage::disk('public')->delete($song->image);
-        Storage::disk('public')->delete($song->file);
-        $song->tags()->detach();
-        $song->delete();
-        return redirect()->route('admin.song.index');
+    public function addListenedSong(Request $request) {
+        $user = auth()->user();
+        $songId = $request->songId;
+        if(!$songId || !$user) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+        if($user->listenedSongs()->where('song_id', $songId)->exists()) {
+            return response()->json(['status' => 'error', 'listened' => false, 'error' => 'User already listened song with id ' . $songId]);
+        } else {
+            $user->listenedSongs()->attach($songId);
+            return response()->json(['status' => 'success', 'listened' => true]);
+        }
     }
 }

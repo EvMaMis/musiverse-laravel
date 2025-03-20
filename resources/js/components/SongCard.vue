@@ -17,8 +17,8 @@
                     <i :class="track.is_liked ? 'fas fa-heart' : 'fa-regular fa-heart'"></i>
                 </button>
             </div>
-            <div class="liked-at" v-if="track.liked_at">
-                {{track.liked_at}}
+            <div class="liked-at" v-if="track.timestamp">
+                {{track.timestamp}}
             </div>
         </div>
     </div>

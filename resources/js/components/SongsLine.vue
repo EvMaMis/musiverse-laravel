@@ -22,7 +22,6 @@ const fetchSongs = async () => {
         } else {
             songs.value = props.data.songs;
         }
-        console.log(songs);
     } catch (error) {
         console.error('Error fetching songs:', error);
     }
@@ -35,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="">
+    <div v-if="songs && songs.length > 0">
         <div class="header">{{ props.data.header }}</div>
         <div class="card-row">
             <song-card v-for="song in songs" :key="song.id" :track="song"></song-card>

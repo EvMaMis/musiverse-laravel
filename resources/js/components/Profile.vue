@@ -8,6 +8,11 @@
                 <songs-line :data="{header: 'Your likes', songs: data.likes}"></songs-line>
             </div>
         </div>
+        <div class="text">
+            <div class="info-block" v-if="data.listened && data.listened.length">
+                <songs-line :data="{header: 'You listened', songs: data.listened}"></songs-line>
+            </div>
+        </div>
     </div>
 </template>
 

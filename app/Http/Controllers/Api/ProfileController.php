@@ -17,12 +17,19 @@ class ProfileController extends Controller
         $timezone = $user->timezone ?? config('app.timezone');
         $likedSongs = $user->likedSongs()->with('artist')->get()->map(function ($song) use ($timezone) {
             $song->is_liked = true;
-            $song->liked_at = Carbon::parse($song->pivot->created_at)
+            $song->timestamp = Carbon::parse($song->pivot->created_at)
                 ->timezone($timezone)
                 ->translatedFormat('d F Y H:i:s');
             return $song;
         });
 
-        return response()->json(['likes' => $likedSongs]);
+        $listenedSongs = $user->listenedSongs()->with('artist')->get()->map(function ($song) use ($timezone) {
+            $song->timestamp = Carbon::parse($song->pivot->created_at)
+                ->timezone($timezone)
+                ->translatedFormat('d F Y H:i:s');
+            return $song;
+        });
+
+        return response()->json(['likes' => $likedSongs, 'listened' => $listenedSongs]);
     }
 }

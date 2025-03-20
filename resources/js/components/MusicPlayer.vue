@@ -12,10 +12,12 @@
 </template>
 
 <script setup>
-import { inject, watch, ref } from 'vue';
+import { inject, watch, ref, onMounted, onUnmounted} from 'vue';
+import {start} from "@popperjs/core";
 
 const musicPlayerState = inject('musicPlayerState');
 const audioPlayer = ref(null);
+let listenTimeout = null;
 
 const handleTrackEnd = () => {
     playNextTrack();
@@ -32,9 +34,36 @@ const playPreviousTrack = () => {
 const togglePlayPause = () => {
     if (audioPlayer.value.paused) {
         audioPlayer.value.play();
+        startListeningTimer();
     } else {
         audioPlayer.value.pause();
+        if (listenTimeout) clearTimeout(listenTimeout);
+
     }
+};
+
+const sendListenedRequest = async (songId) => {
+    try {
+        const test = await axios.post('/api/songs/add-listened', {
+            songId: songId
+        });
+        console.log(test);
+    } catch(e) {
+        console.error(e);
+    }
+};
+1
+const startListeningTimer = () => {
+    if (listenTimeout) clearTimeout(listenTimeout);
+    let timeoutTime = audioPlayer.value ? 10000 - audioPlayer.value.currentTime * 1000 : 10000;
+    if(timeoutTime <= 0) {
+        return true;
+    }
+    listenTimeout = setTimeout(() => {
+        if (musicPlayerState.currentTrack) {
+            sendListenedRequest(musicPlayerState.currentTrack.id);
+        }
+    }, timeoutTime);
 };
 
 watch(() => musicPlayerState.currentTrack, (newTrack) => {
@@ -42,7 +71,22 @@ watch(() => musicPlayerState.currentTrack, (newTrack) => {
         audioPlayer.value.src  = 'storage/' + newTrack.file;
         audioPlayer.value.play();
     }
+    startListeningTimer();
+
 });
+
+onMounted(() => {
+    if(audioPlayer.value) {
+        audioPlayer.value.addEventListener('play', startListeningTimer);
+    }
+});
+
+onUnmounted(() => {
+    if (audioPlayer.value) {
+        audioPlayer.value.removeEventListener('play', startListeningTimer);
+    }
+    if (listenTimeout) clearTimeout(listenTimeout);
+})
 </script>
 
 <style scoped>

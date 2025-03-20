@@ -66,6 +66,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function likedSongs() {
-        return $this->belongsToMany(Song::class, 'likes', 'user_id', 'song_id')->withTimestamps();
+        return $this
+            ->belongsToMany(Song::class, 'likes', 'user_id', 'song_id')
+            ->withTimestamps()
+            ->withPivot('created_at')
+            ->orderByPivot('likes.created_at', 'desc');
+    }
+
+    public function listenedSongs() {
+        return $this
+            ->belongsToMany(Song::class, 'songs_listened', 'user_id', 'song_id')
+            ->withTimestamps()
+            ->withPivot('created_at')
+            ->orderByPivot('songs_listened.created_at', 'desc');
     }
 }
