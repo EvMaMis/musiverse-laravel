@@ -71,4 +71,9 @@ class SongController extends Controller
             return response()->json(['status' => 'success', 'listened' => true]);
         }
     }
+
+    public function generateQueue() {
+        $user = auth()->user();
+
+    }
 }

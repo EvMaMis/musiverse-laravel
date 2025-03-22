@@ -129,6 +129,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
     Route::get('/recommendations/songs', [\App\Http\Controllers\Api\RecommendationController::class, 'getSongsRecommendations']);
     Route::post('/songs/add-listened', [\App\Http\Controllers\Api\SongController::class, 'addListenedSong']);
     Route::post('/songs/toggle-like', [\App\Http\Controllers\Api\SongController::class, 'toggleLiked']);
+    Route::post('/songs/generate-queue', [\App\Http\Controllers\Api\SongController::class, 'generateQueue']);
 });
 
 Auth::routes(['verify' => true]);

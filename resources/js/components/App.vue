@@ -64,11 +64,12 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 300px;
     border-radius: 30px;
     color: #C5C6C7;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    height: 300px;
 }
 
 .navbar {
@@ -78,7 +79,7 @@ body {
 .main-view {
     background: linear-gradient(10deg, #1F2833, #0B0C10 70%) no-repeat center top / cover;
     margin: 0;
-    padding: 0;
+    padding: 0 30px;
 }
 
 .main-block {

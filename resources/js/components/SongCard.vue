@@ -79,7 +79,7 @@ const addToQueue = () => {
     height: fit-content;
     width: 200px;
     background-color: rgba(33, 37, 46);
-    margin: 10px 30px 10px 0;
+    margin: 10px 0px 10px 0;
 }
 
 .song-card img {
