@@ -24,7 +24,7 @@ class SongSeeder extends Seeder
             Storage::disk('public')->makeDirectory('music');
         }
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $song = Song::create([
                 'title' => $faker->sentence(3),
                 'artist_id' => Artist::all()->random()->id,

@@ -1,9 +1,12 @@
 <template>
     <div class="recommendations-block" v-if="recommendationsFetched">
         <div class="recommendation-list">
-            <songs-line key="tags" :data="{header: 'Sound similar to what you listened:', songs: recommendations.tags}"></songs-line>
-            <songs-line key="tags" :data="{header: 'Something new from same artists:', songs: recommendations.artists}"></songs-line>
-            <songs-line key="tags" :data="{header: 'New songs from your favorite genres:', songs: recommendations.genres}"></songs-line>
+            <songs-line key="tags"
+                        :data="{header: 'Рекомендації за тегами:', description: 'Тут перелічені композиції з такими ж тегами, які ви вподобали.', songs: recommendations.tags}"></songs-line>
+            <songs-line key="tags"
+                        :data="{header: 'Рекомендації від виконавців, які вам сподобались:', description: 'Тут перелічені композиції від тих авторів, чиї композиції ви вподобали.', songs: recommendations.artists}"></songs-line>
+            <songs-line key="tags"
+                        :data="{header: 'Рекомендації за жанрами:', description: 'Тут перелічені композиції з тих жанрів, які вам сподобались.', songs: recommendations.genres}"></songs-line>
         </div>
     </div>
 
@@ -21,12 +24,12 @@ onMounted(() => {
 });
 
 
-const fetchRecSongs = async() =>{
-    try{
+const fetchRecSongs = async () => {
+    try {
         const response = await axios.get('api/recommendations/songs');
         recommendations.value = response.data;
         console.log(recommendations.value);
-    } catch(e) {
+    } catch (e) {
         console.log(e);
     }
 }

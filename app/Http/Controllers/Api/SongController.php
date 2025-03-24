@@ -35,7 +35,7 @@ class SongController extends Controller
 
     public function getLikedSongs() {
         $user = auth()->user();
-        $songs = Song::with('artist')->get()->map(function ($song) use ($user) {
+        $songs = Song::with('artist')->withCount(['plays', 'likes'])->get()->map(function ($song) use ($user) {
             $song->is_liked = $user ? $user->likedSongs()->where('song_id', $song->id)->exists() : false;
             return $song;
         });

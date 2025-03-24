@@ -31,6 +31,14 @@ class Song extends Model
         return $this->hasOne(Genre::class, 'id', 'genre_id');
     }
 
+    public function plays() {
+        return $this->belongsToMany(User::class, 'songs_listened', 'song_id', 'user_id');
+    }
+
+    public function likes() {
+        return $this->belongsToMany(User::class, 'likes', 'song_id', 'user_id');
+    }
+
     public function playlists()
     {
         return $this->belongsToMany(Playlist::class, 'playlist_song');

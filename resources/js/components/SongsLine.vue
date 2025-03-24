@@ -9,7 +9,8 @@ const props = defineProps({
         required: true,
         default: () => ({
             songs: [],
-            header: ''
+            header: '',
+            description: ''
         }),
     }
 });
@@ -36,6 +37,7 @@ onMounted(() => {
 <template>
     <div v-if="songs && songs.length > 0">
         <div class="header">{{ props.data.header }}</div>
+        <div class="description" v-if="props.data.description !== ''">{{ props.data.description }}</div>
         <div class="card-row">
             <song-card v-for="song in songs" :key="song.id" :track="song"></song-card>
         </div>

@@ -20,6 +20,12 @@
             <div class="liked-at" v-if="track.timestamp">
                 {{track.timestamp}}
             </div>
+            <div class="plays">
+                Plays: {{track.plays_count}}
+            </div>
+            <div class="plays">
+                Likes: {{track.likes_count}}
+            </div>
         </div>
     </div>
 </template>
@@ -168,6 +174,11 @@ button:hover {
 
 button i {
 
+}
+
+.plays {
+    color: white;
+    margin-top: 9px;
 }
 
 .liked-at {
