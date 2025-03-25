@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artist_subscription', function (Blueprint $table) {
+        Schema::create('artist_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('artist_id');
             $table->foreign('artist_id')->references('id')->on('artists');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artist_subscription');
+        Schema::dropIfExists('artist_subscriptions');
     }
 };

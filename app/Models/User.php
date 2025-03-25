@@ -86,6 +86,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function subscriptions()
     {
-        return $this->belongsToMany(Artist::class, 'artist_subscription', 'user_id', 'artist_id');
+        return $this->belongsToMany(Artist::class, 'artist_subscriptions', 'user_id', 'artist_id');
     }
 }

@@ -39,8 +39,11 @@ const handleSubscribe = async () => {
             <div class="subscribers" v-if="artist.subscribers_count">
                 Підписники: {{artist.subscribers_count}}
             </div>
-            <div class="likes" v-if="artist.likes_count">
-                Загальна кількість вподобань: {{artist.likes_count}}
+            <div class="likes" v-if="artist.likes">
+                Загальна кількість вподобань: {{artist.likes}}
+            </div>
+            <div class="plays">
+                Загальна кількість прослуховувань: {{artist.plays}}
             </div>
             <div class="songs-count">
                 Загальна кількість композицій: {{artist.songs.length}}

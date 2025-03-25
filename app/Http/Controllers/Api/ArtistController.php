@@ -20,6 +20,9 @@ class ArtistController extends Controller
 {
     public function getSingleArtist(Artist $artist) {
         $artist->load('songs.artist');
+        $artist->likes = $artist->likes();
+        $artist->subscribers_count = $artist->subscriptions()->count();
+        $artist->plays = $artist->plays();
         return response()->json($artist);
     }
 

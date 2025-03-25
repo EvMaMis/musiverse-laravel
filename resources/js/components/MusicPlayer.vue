@@ -4,7 +4,7 @@
             <audio v-if="musicPlayerState.currentTrack" ref="audioPlayer" :src="'storage/' + musicPlayerState.currentTrack.file" controls autoplay @ended="handleTrackEnd"></audio>
             <div class="generate-queue">
                 <input type="checkbox" id="generate-checkbox" @change="toggleGenerate">
-                <label for="generate-checkbox">Add recomended songs?</label>
+                <label for="generate-checkbox">Додавати рекомендовані пісні?</label>
             </div>
             <div class="controls">
                 <button @click="playPreviousTrack">⏮️</button>
