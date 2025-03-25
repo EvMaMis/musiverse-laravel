@@ -5,7 +5,7 @@
         </RouterLink>
         <div class="song-info">
             <div class="title-container"><div class="title">{{ track.title }}</div></div>
-            <p>{{ track.artist.name }}</p>
+            <p><RouterLink :to="{ name: 'SingleArtist', params: { id: track.artist.id} }" class="artist-block"> {{ track.artist.name }} </RouterLink></p>
             <div class="controls">
                 <button @click="togglePlay">
                     <i :class="isPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
@@ -20,10 +20,10 @@
             <div class="liked-at" v-if="track.timestamp">
                 {{track.timestamp}}
             </div>
-            <div class="plays">
+            <div class="plays" v-if="track.plays_count">
                 Plays: {{track.plays_count}}
             </div>
-            <div class="plays">
+            <div class="plays" v-if="track.likes_count">
                 Likes: {{track.likes_count}}
             </div>
         </div>
@@ -129,8 +129,7 @@ const addToQueue = () => {
     display: inline-block;
     color: #C5C6C7;
     font-size: 23px;
-    padding-right: 100%; /* Adjust based on the length of the text */
-
+    padding-right: 100%;
 }
 
 @keyframes scroll-title {
@@ -142,7 +141,7 @@ const addToQueue = () => {
     }
 }
 
-.song-info p {
+.artist-block {
     color: #C5C6C7;
     margin: 0;
 }

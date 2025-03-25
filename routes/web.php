@@ -125,6 +125,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
     Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'getLikedSongs']);
     Route::get('/playlists', [\App\Http\Controllers\Api\PlaylistController::class, 'index']);
+    Route::get('/artists/{artist}', [\App\Http\Controllers\Api\ArtistController::class, 'getSingleArtist']);
+    Route::post('/artists/{artist}/subscribe', [\App\Http\Controllers\Api\ArtistController::class, 'handleSubscribe']);
     Route::get('/profile', [\App\Http\Controllers\Api\ProfileController::class, 'profilePage']);
 //    Route::get('/recommendations/collaborative', [\App\Http\Controllers\Api\RecommendationController::class, 'getCollaborativeFiltering']);
     Route::get('/recommendations/songs', [\App\Http\Controllers\Api\RecommendationController::class, 'getSongsRecommendations']);

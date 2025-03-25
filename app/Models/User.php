@@ -56,7 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new SendVerifyWithQueueNotification());
     }
 
-    public function hasAnyAdminPermissions() {
+    public function hasAnyAdminPermissions()
+    {
         return count($this->getAllPermissions()) > 0;
     }
 
@@ -65,7 +66,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Playlist::class);
     }
 
-    public function likedSongs() {
+    public function likedSongs()
+    {
         return $this
             ->belongsToMany(Song::class, 'likes', 'user_id', 'song_id')
             ->withTimestamps()
@@ -73,11 +75,17 @@ class User extends Authenticatable implements MustVerifyEmail
             ->orderByPivot('likes.created_at', 'desc');
     }
 
-    public function listenedSongs() {
+    public function listenedSongs()
+    {
         return $this
             ->belongsToMany(Song::class, 'songs_listened', 'user_id', 'song_id')
             ->withTimestamps()
             ->withPivot('created_at')
             ->orderByPivot('songs_listened.created_at', 'desc');
+    }
+
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Artist::class, 'artist_subscription', 'user_id', 'artist_id');
     }
 }
