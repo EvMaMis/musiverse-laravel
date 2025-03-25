@@ -9,9 +9,11 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Song;
 use App\Models\Tag;
+use App\Models\User;
 use App\Service\SongService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SongController extends Controller
@@ -72,8 +74,8 @@ class SongController extends Controller
         }
     }
 
-    public function generateQueue() {
-        $user = auth()->user();
-
-    }
+//    public function generateQueue() {
+//        $user = auth()->user();
+//
+//    }
 }

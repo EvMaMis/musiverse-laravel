@@ -126,6 +126,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
     Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'getLikedSongs']);
     Route::get('/playlists', [\App\Http\Controllers\Api\PlaylistController::class, 'index']);
     Route::get('/profile', [\App\Http\Controllers\Api\ProfileController::class, 'profilePage']);
+//    Route::get('/recommendations/collaborative', [\App\Http\Controllers\Api\RecommendationController::class, 'getCollaborativeFiltering']);
     Route::get('/recommendations/songs', [\App\Http\Controllers\Api\RecommendationController::class, 'getSongsRecommendations']);
     Route::post('/songs/add-listened', [\App\Http\Controllers\Api\SongController::class, 'addListenedSong']);
     Route::post('/songs/toggle-like', [\App\Http\Controllers\Api\SongController::class, 'toggleLiked']);

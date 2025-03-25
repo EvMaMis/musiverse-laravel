@@ -15,7 +15,7 @@ class ProfileController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         $timezone = $user->timezone ?? config('app.timezone');
-        $likedSongs = $user->likedSongs()->with('artist')->get()->map(function ($song) use ($timezone) {
+        $likedSongs = $user->likedSongs()->with('artist')->withCount(['likes', 'plays'])->get()->map(function ($song) use ($timezone) {
             $song->is_liked = true;
             $song->timestamp = Carbon::parse($song->pivot->created_at)
                 ->timezone($timezone)
@@ -23,7 +23,7 @@ class ProfileController extends Controller
             return $song;
         });
 
-        $listenedSongs = $user->listenedSongs()->with('artist')->get()->map(function ($song) use ($timezone) {
+        $listenedSongs = $user->listenedSongs()->with('artist')->withCount(['likes', 'plays'])->get()->map(function ($song) use ($timezone) {
             $song->timestamp = Carbon::parse($song->pivot->created_at)
                 ->timezone($timezone)
                 ->translatedFormat('d F Y H:i:s');
