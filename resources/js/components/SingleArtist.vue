@@ -16,6 +16,7 @@ const fetchArtistInfo = async () => {
     try {
         let response = await axios.get(`/api/artists/${artistId}`);
         artist.value = response.data;
+        isSubscribed.value = response.data.isSubscribed;
     } catch (e) {
         console.error(e);
     }

@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Storage;
 class ArtistController extends Controller
 {
     public function getSingleArtist(Artist $artist) {
+        $user = auth()->user();
         $artist->load('songs.artist');
         $artist->likes = $artist->likes();
         $artist->subscribers_count = $artist->subscriptions()->count();
         $artist->plays = $artist->plays();
+        $artist->isSubscribed = $user->subscriptions()->where('artist_id', $artist->id)->exists();
         return response()->json($artist);
     }
 
