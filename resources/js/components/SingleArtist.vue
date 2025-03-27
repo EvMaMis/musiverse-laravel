@@ -68,4 +68,8 @@ const handleSubscribe = async () => {
 .artist-block {
     color: #9ca3af;
 }
+
+.biography {
+    margin: 20px 0px 5px;
+}
 </style>

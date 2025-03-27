@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 
 import Song from './components/Song.vue';
 import Playlist from './components/Playlist.vue';
@@ -19,6 +19,6 @@ const routes = [
 ]
 
 export const router = createRouter({
-    history: createMemoryHistory(),
+    history: createWebHistory(),
     routes,
 })

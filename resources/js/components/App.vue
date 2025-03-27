@@ -15,7 +15,7 @@
 
         </div>
         <div class="col-9 main-view">
-            <router-view></router-view>
+            <router-view :key="$route.params.id"></router-view>
         </div>
     </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div class="song-card">
         <RouterLink :to="{ name: 'SingleSong', params: { id: track.id } }" class="navbar-brand">
-            <img :src="'storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
+            <img :src="'/storage/' + track.image" alt="{{__('Cover')}}" class="song-card-img">
         </RouterLink>
         <div class="song-info">
             <div class="title-container"><div class="title">{{ track.title }}</div></div>

@@ -125,11 +125,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function() {
     Route::get('/songs', [\App\Http\Controllers\Api\SongController::class, 'getLikedSongs']);
     Route::get('/playlists', [\App\Http\Controllers\Api\PlaylistController::class, 'index']);
+    Route::get('/songs/{song}', [\App\Http\Controllers\Api\SongController::class, 'single']);
     Route::get('/artists/{artist}', [\App\Http\Controllers\Api\ArtistController::class, 'getSingleArtist']);
     Route::post('/artists/{artist}/subscribe', [\App\Http\Controllers\Api\ArtistController::class, 'handleSubscribe']);
     Route::get('/profile', [\App\Http\Controllers\Api\ProfileController::class, 'profilePage']);
 //    Route::get('/recommendations/collaborative', [\App\Http\Controllers\Api\RecommendationController::class, 'getCollaborativeFiltering']);
     Route::get('/recommendations/songs', [\App\Http\Controllers\Api\RecommendationController::class, 'getSongsRecommendations']);
+    Route::get('/recommendations/songs/{song}', [\App\Http\Controllers\Api\RecommendationController::class, 'getRelatedSongs']);
     Route::post('/songs/add-listened', [\App\Http\Controllers\Api\SongController::class, 'addListenedSong']);
     Route::post('/songs/toggle-like', [\App\Http\Controllers\Api\SongController::class, 'toggleLiked']);
     Route::post('/songs/generate-queue', [\App\Http\Controllers\Api\SongController::class, 'generateQueue']);

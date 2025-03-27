@@ -31,7 +31,17 @@ class SongController extends Controller
     }
 
     public function single(Song $song) {
-        dd($song);
+        $user = auth()->user();
+        $song->load([
+            'artist',
+            'tags' => function ($query) {
+                $query->orderBy('title');
+            },
+            'genre',
+            'likes'
+        ]);
+        $song->likes_count = $song->likes->count();
+        $song->is_liked = $user->likedSongs->contains($song->id);
         return response()->json($song);
     }
 

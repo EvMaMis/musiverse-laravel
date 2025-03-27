@@ -7,6 +7,7 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Song;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class RecommendationController extends Controller
 {
@@ -51,7 +52,35 @@ class RecommendationController extends Controller
         return response()->json($result);
     }
 
-    private function getCollaborativeFiltering() {
+    public function getRelatedSongs(Song $song)
+    {
+        $songTags = $song->tags()->pluck('tags.id')->toArray();
+        $genre = Song::with('artist')
+            ->withCount(['plays', 'likes'])
+            ->where('genre_id', $song->genre_id)
+            ->limit(5)
+            ->get();
+        $artist = Song::with('artist')
+            ->where('artist_id', $song->artist_id)
+            ->withCount(['likes', 'plays'])
+            ->orderBy('likes_count', 'desc')
+            ->limit(5)
+            ->get();
+        $tags = Song::with('artist')
+            ->where('id', '!=', $song->id)
+            ->withCount(['tags' => function ($query) use ($songTags) {
+                $query->whereIn('tags.id', $songTags);
+            }])
+            ->withCount(['plays', 'likes'])
+            ->orderBy('tags_count', 'desc')
+            ->limit(5)
+            ->get();
+        $result = ['artist' => $artist, 'genre' => $genre, 'tags' => $tags];
+        return response()->json($result);
+    }
+
+    private function getCollaborativeFiltering()
+    {
         $user = auth()->user();
         $likedSongs = $user->likedSongs()->get()->pluck('id')->toArray();
         $listenedSongs = $user->listenedSongs()->get()->pluck('id')->toArray();
@@ -83,11 +112,11 @@ class RecommendationController extends Controller
             ->pluck('id')
             ->toArray();
 
-        $recommendedSongs = Song::with('artist')->whereHas('likes', function($query) use($similarUsers) {
+        $recommendedSongs = Song::with('artist')->whereHas('likes', function ($query) use ($similarUsers) {
             $query->whereIn('user_id', $similarUsers);
         })
             ->whereNotIn('id', $likedSongs)
-            ->withCount(['likes as similar_likes' => function($query) use($similarUsers) {
+            ->withCount(['likes as similar_likes' => function ($query) use ($similarUsers) {
                 $query->whereIn('user_id', $similarUsers);
             }])
             ->withCount(['likes', 'plays'])
